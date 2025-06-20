@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Aves del Altiplano</title>
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="imagenes/icono.jpg">
+    <link rel="stylesheet" href="styles.css" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <header class="hero-section">
+    <!-- Menú de navegación -->
+    <nav class="navbar">
+        <ul class="nav-menu">
+            <li><a href="index.html" class="nav-link">Inicio</a></li>
+            <li><a href="quiz.html" class="nav-link">Colección de Preguntas</a></li>
+            <li><a href="blog.html" class="nav-link">Blog</a></li>
+        </ul>
+    </nav>
+    
+    <!-- Portada de aves de fondo -->
+    <div class="bird-cover"></div>
+    
+    <!-- Contenido del hero -->
+    <div class="hero-content">
+        <h1 class="main-title">
+            <i class="fas fa-feather-alt"></i>
+            Aves de la Bahía de Puno
+        </h1>
+        <p class="subtitle">Descubre la rica diversidad de las aves que habitan en las orillas del majestuoso Lago Titicaca</p>
+    </div>
+    
+    <!-- Decoraciones flotantes -->
+    <div class="hero-decoration">
+        <div class="floating-feather feather-1">🪶</div>
+        <div class="floating-feather feather-2">🪶</div>
+        <div class="floating-feather feather-3">🪶</div>
+    </div>
+</header>
+
+
+<!-- Carrusel Infinito de Aves de Puno -->
+<section class="aves-puno">
+    <section class="collection-header">
+                <h2>Explora las especies de aves del Altiplano</h2>
+            </section>
+    <div class="carousel-container">
+        <div class="carousel-track">
+            <div class="carousel-slide">
+                <img src="imagenes/águila ratonera pechinegra en puno.png" alt="Flamencos Andinos">
+            </div>
+            <div class="carousel-slide">
+                <img src="imagenes/Gallinulamorada.png" alt="Gaviota Andina">
+            </div>
+            <div class="carousel-slide">
+                <img src="imagenes/Garzanocturna.png" alt="Pato Puna">
+            </div>
+            <div class="carousel-slide">
+                <img src="imagenes/GaviotaAndina.png" alt="Zambullidor del Titicaca">
+            </div>
+            <div class="carousel-slide">
+                <img src="imagenes/Cigüeñuela.png" alt="Gallareta Gigante">
+            </div>
+            <div class="carousel-slide">
+                <img src="imagenes/Chorlito de puna.png" alt="Chorlito de la Puna">
+            </div>
+            <div class="carousel-slide">
+                <img src="imagenes/Avocetaandina.png" alt="Ibis de la Puna">
+            </div>
+            <div class="carousel-slide">
+                <img src="imagenes/Garzanocturna.png" alt="Bandurria Andina">
+            </div>
+        </div>
+    </div>
+</section>
+    <main class="main-content">
+        <div class="container">
+            <section class="collection-header" id="coleccion">
+                <h2>Colección de Especies</h2>
+                <p>Explora nuestra selección de aves y descubre datos fascinantes sobre cada especie</p>
+            </section>
+            
+
+            <div class="birds-grid">
+                <div class="bird-card" onclick="abrirDato(1)">
+                    <div class="card-image-container">
+                        <img src="imagenes/águila ratonera pechinegra en puno.png" alt="Gaviota" class="bird-image" />
+                        <div class="card-overlay">
+                            <i class="fas fa-info-circle"></i>
+                            <span>Ver detalles</span>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="bird-name">Aguila ratonera pechinegra</h3>
+                        <p class="bird-scientific">Geranoaetus melanoleucus</p>
+                        <div class="card-tags">
+                            <span class="tag">Vuelo aerodinámico</span>
+                            <span class="tag">Aislamiento térmico</span>
+                        </div>
+                    </div>
+                    <!-- <div id="qr1" class="qr-container"></div> -->
+                </div>
+
+                <div class="bird-card" onclick="abrirDato(2)">
+                    <div class="card-image-container">
+                        <img src="imagenes/Aguilucho negro.png" alt="Cisne" class="bird-image" />
+                        <div class="card-overlay">
+                            <i class="fas fa-info-circle"></i>
+                            <span>Ver detalles</span>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="bird-name">Aguilucho Negro</h3>
+                        <p class="bird-scientific">-</p>
+                        <div class="card-tags">
+                            <span class="tag">Vuelo aerodinámico</span>
+                            <span class="tag">Elegante</span>
+                        </div>
+                    </div>
+                    <!-- <div id="qr2" class="qr-container"></div> -->
+                </div>
+
+                <div class="bird-card" onclick="abrirDato(3)">
+                    <div class="card-image-container">
+                        <img src="imagenes/Avocetaandina.png" alt="Águila Real" class="bird-image" />
+                        <div class="card-overlay">
+                            <i class="fas fa-info-circle"></i>
+                            <span>Ver detalles</span>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="bird-name">Avoceta Andina</h3>
+                        <p class="bird-scientific">Recurvirostra andina</p>
+                        <div class="card-tags">
+                            <span class="tag">Tamaño: 40–45 cm</span>
+                            <span class="tag">Estado: Vulnerable</span>
+                        </div>
+                    </div>
+                    <!-- <div id="qr3" class="qr-container"></div> -->
+                </div>
+
+
+                <div class="bird-card" onclick="abrirDato(4)">
+                    <div class="card-image-container">
+                        <img src="imagenes/Chorlito de puna.png" alt="Colibrí" class="bird-image" />
+                        <div class="card-overlay">
+                            <i class="fas fa-info-circle"></i>
+                            <span>Ver detalles</span>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="bird-name">Chorlito de Puna</h3>
+                        <p class="bird-scientific">Charadrius alticola</p>
+                        <div class="card-tags">
+                            <span class="tag">Pequeña</span>
+                            <span class="tag">Estado: Estable</span>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="bird-card" onclick="abrirDato(5)">
+                    <div class="card-image-container">
+                        <img src="imagenes/Chullumpi.png" alt="Flamenco" class="bird-image" />
+                        <div class="card-overlay">
+                            <i class="fas fa-info-circle"></i>
+                            <span>Ver detalles</span>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="bird-name">Chullumpi</h3>
+                        <p class="bird-scientific">Anas flavirostris oxyptera</p>
+                        <div class="card-tags">
+                            <span class="tag">Preferencia por lagunas</span>
+                            <span class="tag">EStado: Estable</span>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="bird-card" onclick="abrirDato(6)">
+                    <div class="card-image-container">
+                        <img src="imagenes/Cigüeñuela.png" alt="Pelícano" class="bird-image" />
+                        <div class="card-overlay">
+                            <i class="fas fa-info-circle"></i>
+                            <span>Ver detalles</span>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="bird-name">Cigüeñuela</h3>
+                        <p class="bird-scientific">Himantopus mexicanus</p>
+                        <div class="card-tags">
+                            <span class="tag">Vuelo ágil y recto</span>
+                            <span class="tag">Peso: 160-200 g</span>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <div class="bird-card" onclick="abrirDato(7)">
+                    <div class="card-image-container">
+                        <img src="imagenes/Gallinetacomún.png" alt="Gaviota" class="bird-image" />
+                        <div class="card-overlay">
+                            <i class="fas fa-info-circle"></i>
+                            <span>Ver detalles</span>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="bird-name">Gallineta Comun</h3>
+                        <p class="bird-scientific">Gallinula chloropus</p>
+                        <div class="card-tags">
+                            <span class="tag">Vuelo corto y rápido</span>
+                            <span class="tag">Peso: 250-400 g</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bird-card" onclick="abrirDato(8)">
+                    <div class="card-image-container">
+                        <img src="imagenes/Gallinulamorada.png" alt="Cisne" class="bird-image" />
+                        <div class="card-overlay">
+                            <i class="fas fa-info-circle"></i>
+                            <span>Ver detalles</span>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="bird-name">Gallinula Morada</h3>
+                        <p class="bird-scientific">Porphyrio martinicus</p>
+                        <div class="card-tags">
+                            <span class="tag">Vuelo limitado</span>
+                            <span class="tag">Colorido para cortejo</span>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="bird-card" onclick="abrirDato(9)">
+                    <div class="card-image-container">
+                        <img src="imagenes/Garcetabueyera.png" alt="Águila Real" class="bird-image" />
+                        <div class="card-overlay">
+                            <i class="fas fa-info-circle"></i>
+                            <span>Ver detalles</span>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="bird-name">Garceta Bueyera</h3>
+                        <p class="bird-scientific">Bubulcus ibis</p>
+                        <div class="card-tags">
+                            <span class="tag">Vuelo directo</span>
+                            <span class="tag">Comportamiento oportunista</span>
+                        </div>
+                    </div>
+                </div>
+
+
+                <!-- EN EL DESPLEGABLE -->
+                <div class="bird-card" onclick="abrirDato(10)">
+                    <div class="card-image-container">
+                        <img src="imagenes/GarcetaGrande.png" alt="Águila Real" class="bird-image" />
+                        <div class="card-overlay">
+                            <i class="fas fa-info-circle"></i>
+                            <span>Ver detalles</span>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="bird-name">Garceta Grande</h3>
+                        <p class="bird-scientific">Ardea alba</p>
+                        <div class="card-tags">
+                            <span class="tag">Vuelo elegante</span>
+                            <span class="tag">Caza sigilosa</span>
+                        </div>
+                    </div>
+                    
+                </div>
+
+
+                <div class="bird-card" onclick="abrirDato(11)">
+                    <div class="card-image-container">
+                        <img src="imagenes/Garzanocturna.png" alt="Águila Real" class="bird-image" />
+                        <div class="card-overlay">
+                            <i class="fas fa-info-circle"></i>
+                            <span>Ver detalles</span>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="bird-name">Garza Nocturna</h3>
+                        <p class="bird-scientific">Nycticorax nycticorax</p>
+                        <div class="card-tags">
+                            <span class="tag">Hábitos nocturnos</span>
+                            <span class="tag">Ojos adaptados</span>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="bird-card" onclick="abrirDato(12)">
+                    <div class="card-image-container">
+                        <img src="imagenes/Gavilán dorsirrojo.png" alt="Águila Real" class="bird-image" />
+                        <div class="card-overlay">
+                            <i class="fas fa-info-circle"></i>
+                            <span>Ver detalles</span>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="bird-name">Gavilan Dorsirrojo</h3>
+                        <p class="bird-scientific">Parabuteo unicinctus</p>
+                        <div class="card-tags">
+                            <span class="tag">Caza cooperativa</span>
+                            <span class="tag">Visión aguda</span>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="bird-card" onclick="abrirDato(13)">
+                    <div class="card-image-container">
+                        <img src="imagenes/GaviotaAndina.png" alt="Águila Real" class="bird-image" />
+                        <div class="card-overlay">
+                            <i class="fas fa-info-circle"></i>
+                            <span>Ver detalles</span>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="bird-name">Gaviota Andina</h3>
+                        <p class="bird-scientific">Chroicocephalus serranus</p>
+                        <div class="card-tags">
+                            <span class="tag">Adaptada al frío</span>
+                            <span class="tag">Coloración estacional</span>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="bird-card" onclick="abrirDato(14)">
+                    <div class="card-image-container">
+                        <img src="imagenes/Golondrina andina.png" alt="Águila Real" class="bird-image" />
+                        <div class="card-overlay">
+                            <i class="fas fa-info-circle"></i>
+                            <span>Ver detalles</span>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="bird-name">Golondrina Andina</h3>
+                        <p class="bird-scientific">Orochelidon andecola</p>
+                        <div class="card-tags">
+                            <span class="tag">Vuelo rápido</span>
+                            <span class="tag">Adaptación a la altura</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bird-card" onclick="abrirDato(15)">
+                    <div class="card-image-container">
+                        <img src="imagenes/Huallata.png" alt="Águila Real" class="bird-image" />
+                        <div class="card-overlay">
+                            <i class="fas fa-info-circle"></i>
+                            <span>Ver detalles</span>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="bird-name">Huallata</h3>
+                        <p class="bird-scientific">Chloephaga melanoptera</p>
+                        <div class="card-tags">
+                            <span class="tag">Sonido distintivo</span>
+                            <span class="tag">Muy sociable</span>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="bird-card" onclick="abrirDato(16)">
+                    <div class="card-image-container">
+                        <img src="imagenes/LekeLeke.jpg" alt="Águila Real" class="bird-image" />
+                        <div class="card-overlay">
+                            <i class="fas fa-info-circle"></i>
+                            <span>Ver detalles</span>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="bird-name">Leke Leke</h3>
+                        <p class="bird-scientific">Vanellus resplendens</p>
+                        <div class="card-tags">
+                            <span class="tag">Vocalización fuerte</span>
+                            <span class="tag">Defensa activa</span>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="bird-card" onclick="abrirDato(17)">
+                    <div class="card-image-container">
+                        <img src="imagenes/Minero de puna.png" alt="Águila Real" class="bird-image" />
+                        <div class="card-overlay">
+                            <i class="fas fa-info-circle"></i>
+                            <span>Ver detalles</span>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="bird-name">Minero de Puna</h3>
+                        <p class="bird-scientific">Geositta punensis</p>
+                        <div class="card-tags">
+                            <span class="tag">Locomoción terrestre</span>
+                            <span class="tag">Nidos en cuevas</span>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="bird-card" onclick="abrirDato(18)">
+                    <div class="card-image-container">
+                        <img src="imagenes/Parihuana.png" alt="Águila Real" class="bird-image" />
+                        <div class="card-overlay">
+                            <i class="fas fa-info-circle"></i>
+                            <span>Ver detalles</span>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="bird-name">Parihuana</h3>
+                        <p class="bird-scientific">Phoenicoparrus andinus</p>
+                        <div class="card-tags">
+                            <span class="tag">Filtrador natural</span>
+                            <span class="tag">Coloración por dieta</span>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="bird-card" onclick="abrirDato(19)">
+                    <div class="card-image-container">
+                        <img src="imagenes/Parpadeo andino.png" alt="Águila Real" class="bird-image" />
+                        <div class="card-overlay">
+                            <i class="fas fa-info-circle"></i>
+                            <span>Ver detalles</span>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="bird-name">Parpadeo Andino</h3>
+                        <p class="bird-scientific">Colaptes rupicola</p>
+                        <div class="card-tags">
+                            <span class="tag">Especialista en hormigas</span>
+                            <span class="tag">Peso: 100-120 g</span>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="bird-card" onclick="abrirDato(20)">
+                    <div class="card-image-container">
+                        <img src="imagenes/Pata amarilla menor.png" alt="Águila Real" class="bird-image" />
+                        <div class="card-overlay">
+                            <i class="fas fa-info-circle"></i>
+                            <span>Ver detalles</span>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="bird-name">Pata Amarilla Menor</h3>
+                        <p class="bird-scientific">Tringa flavipes</p>
+                        <div class="card-tags">
+                            <span class="tag">Gran viajera</span>
+                            <span class="tag">Prefiere aguas someras</span>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="bird-card" onclick="abrirDato(21)">
+                    <div class="card-image-container">
+                        <img src="imagenes/PatoPuna.jpg" alt="Águila Real" class="bird-image" />
+                        <div class="card-overlay">
+                            <i class="fas fa-info-circle"></i>
+                            <span>Ver detalles</span>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="bird-name">Pato Puna</h3>
+                        <p class="bird-scientific">Spatula puna</p>
+                        <div class="card-tags">
+                            <span class="tag">Filtrador de lagunas</span>
+                            <span class="tag">Especialista en altura</span>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="bird-card" onclick="abrirDato(22)">
+                    <div class="card-image-container">
+                        <img src="imagenes/PatoRana.png" alt="Águila Real" class="bird-image" />
+                        <div class="card-overlay">
+                            <i class="fas fa-info-circle"></i>
+                            <span>Ver detalles</span>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="bird-name">Pato Rana</h3>
+                        <p class="bird-scientific">Oxyura ferruginea</p>
+                        <div class="card-tags">
+                            <span class="tag">Alimentación acuática</span>
+                            <span class="tag">Discreto y poco visible</span>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="bird-card" onclick="abrirDato(23)">
+                    <div class="card-image-container">
+                        <img src="imagenes/PatoSutro.png" alt="Águila Real" class="bird-image" />
+                        <div class="card-overlay">
+                            <i class="fas fa-info-circle"></i>
+                            <span>Ver detalles</span>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="bird-name">Pato Sutro</h3>
+                        <p class="bird-scientific">Spatula cyanoptera</p>
+                        <div class="card-tags">
+                            <span class="tag">Coloración brillante</span>
+                            <span class="tag">Difícil de observar</span>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="bird-card" onclick="abrirDato(24)">
+                    <div class="card-image-container">
+                        <img src="imagenes/Pinchaflores de garganta negra.png" alt="Águila Real" class="bird-image" />
+                        <div class="card-overlay">
+                            <i class="fas fa-info-circle"></i>
+                            <span>Ver detalles</span>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="bird-name">Pincha Flores de Garganta Negra</h3>
+                        <p class="bird-scientific">Diglossa brunneiventris</p>
+                        <div class="card-tags">
+                            <span class="tag">Especialización alimentaria</span>
+                            <span class="tag">Hábitat altoandino</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bird-card" onclick="abrirDato(25)">
+                    <div class="card-image-container">
+                        <img src="imagenes/Pinzón sierra peruano.png" alt="Águila Real" class="bird-image" />
+                        <div class="card-overlay">
+                            <i class="fas fa-info-circle"></i>
+                            <span>Ver detalles</span>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="bird-name">Pinzon Sierra Peruano</h3>
+                        <p class="bird-scientific">Phrygilus punensis</p>
+                        <div class="card-tags">
+                            <span class="tag">Adaptado al frío</span>
+                            <span class="tag">Alimentación granívora</span>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="bird-card" onclick="abrirDato(26)">
+                    <div class="card-image-container">
+                        <img src="imagenes/Rascónplomizo.png" alt="Águila Real" class="bird-image" />
+                        <div class="card-overlay">
+                            <i class="fas fa-info-circle"></i>
+                            <span>Ver detalles</span>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="bird-name">Rascón Plomizo</h3>
+                        <p class="bird-scientific">Pardirallus sanguinolentus</p>
+                        <div class="card-tags">
+                            <span class="tag">Difícil de avistar</span>
+                            <span class="tag">Dieta variada</span>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="bird-card" onclick="abrirDato(27)">
+                    <div class="card-image-container">
+                        <img src="imagenes/Zambullidor.png" alt="Águila Real" class="bird-image" />
+                        <div class="card-overlay">
+                            <i class="fas fa-info-circle"></i>
+                            <span>Ver detalles</span>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="bird-name">Zambullidor</h3>
+                        <p class="bird-scientific">Podiceps occipitalis</p>
+                        <div class="card-tags">
+                            <span class="tag">Alimentación subacuática</span>
+                            <span class="tag">Plumaje denso e impermeable</span>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="bird-card" onclick="abrirDato(28)">
+                    <div class="card-image-container">
+                        <img src="imagenes/Zampullínplateado.png" alt="Águila Real" class="bird-image" />
+                        <div class="card-overlay">
+                            <i class="fas fa-info-circle"></i>
+                            <span>Ver detalles</span>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="bird-name">Zampullín Plateado</h3>
+                        <p class="bird-scientific">Tachybaptus dominicus</p>
+                        <div class="card-tags">
+                            <span class="tag">Plumaje plateado</span>
+                            <span class="tag">Discreto y curioso</span>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="bird-card" onclick="abrirDato(29)">
+                    <div class="card-image-container">
+                        <img src="imagenes/Zarapito picolargo.png" alt="Águila Real" class="bird-image" />
+                        <div class="card-overlay">
+                            <i class="fas fa-info-circle"></i>
+                            <span>Ver detalles</span>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="bird-name">Zarapito Picolargo</h3>
+                        <p class="bird-scientific">Numenius phaeopus</p>
+                        <div class="card-tags">
+                            <span class="tag">Alimentación especializada</span>
+                            <span class="tag">Gran resistencia</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+
+
+    <div class="banner">
+        <div class="bird-icon">🦅</div>
+        <div class="bird-icon">🕊️</div>
+        
+        <div class="banner-texto">
+            <h2>Aves del Altiplano de Puno</h2>
+            <p>
+                Puno, ubicado en el altiplano peruano y bañado por el lago Titicaca, es un hábitat clave 
+                para muchas aves altoandinas y acuáticas. A continuación te presento información de algunas 
+                aves típicas de la región de Puno, especialmente aquellas que pueden observarse en el lago 
+                Titicaca, bofedales, humedales y zonas altoandinas.
+            </p>
+        </div>
+        
+        <div class="banner-imagen">
+            <img src="imagenes/puno-bahia.jpg" 
+                 alt="Ave del Altiplano de Puno" 
+                 onerror="this.style.background='linear-gradient(135deg, #4db6ac, #80cbc4)'; this.style.color='white'; this.innerHTML='🦅<br>Imagen no disponible'; this.style.display='flex'; this.style.alignItems='center'; this.style.justifyContent='center'; this.style.fontSize='24px'; this.style.textAlign='center';">
+        </div>
+    </div>
+
+
+
+  <footer class="museum-footer">
+    <div class="footer-content">
+      <p>&copy; 2025 Aves del altiplano - Preservando la belleza natural</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/qr-code-styling/lib/qr-code-styling.js"></script>
+</body>
+</html>
