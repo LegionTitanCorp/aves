@@ -10,41 +10,88 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 </head>
 <body>
-    <header class="hero-section">
-    <!-- Menú de navegación -->
-    <nav class="navbar">
-        <ul class="nav-menu">
-            <li><a href="index.html" class="nav-link">Inicio</a></li>
-            <li><a href="quiz.html" class="nav-link">Colección de Preguntas</a></li>
-            <li><a href="blog.html" class="nav-link">Blog</a></li>
-        </ul>
-    </nav>
-    
-    <!-- Portada de aves de fondo -->
-    <div class="bird-cover"></div>
-    
-    <!-- Contenido del hero -->
-    <div class="hero-content">
-        <h1 class="main-title">
-            <i class="fas fa-feather-alt"></i>
-            Aves de la Bahía de Puno
-        </h1>
-        <p class="subtitle">Descubre la rica diversidad de las aves que habitan en las orillas del majestuoso Lago Titicaca</p>
-    </div>
-    
-    <!-- Decoraciones flotantes -->
-    <div class="hero-decoration">
-        <div class="floating-feather feather-1">🪶</div>
-        <div class="floating-feather feather-2">🪶</div>
-        <div class="floating-feather feather-3">🪶</div>
-    </div>
-</header>
+    <header class="hero-section" id="inicio">
+        <!-- Video de fondo -->
+        <video class="video-background" autoplay muted loop>
+            <source src="videos/fondo_final.mp4" type="video/mp4">
+            <!-- Fallback para navegadores que no soportan video -->
+        </video>
+        
+        <!-- Overlay del video -->
+        <div class="video-overlay"></div>
+        
+        <!-- Menú de navegación -->
+        <nav class="navbar">
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">Inicio</a></li>
+                <li><a href="quiz.html" class="nav-link">Colección de Preguntas</a></li>
+                <li><a href="blog.html" class="nav-link">Blog</a></li>
+            </ul>
+        </nav>
+
+        <!-- Logo imagen -->
+        <div class="logo-shield">
+            <img src="imagenes/logo_la_merced.jpg" alt="Logo IES ATL ACORA">
+        </div>
+
+        <!-- Portada de aves de fondo (mantenida para compatibilidad) -->
+        <div class="bird-cover"></div>
+
+        <!-- Contenido del hero -->
+        <div class="hero-content">
+            <h1 class="main-title">
+                Aves de la Bahía de Puno
+            </h1>
+            <p class="subtitle">Descubre la rica diversidad de las aves que habitan en las orillas del majestuoso Lago Titicaca</p>
+            
+            <!-- Botones de acción -->
+            <div class="action-buttons">
+                <a href="#" class="action-btn primary">
+                    <span class="line">ESTUDIANTES:</span>
+                    <span class="line">Francisco Benjamin Irigoyen Escalante</span>
+                    <span class="line">Adryan Salvador Cutipa Neyra</span>
+                </a>
+                <!-- <a href="#" class="action-btn">
+                    <span class="line">ESTUDIANTES:</span>
+                    <span class="line">Francisco Benjamin Irigoyen Escalante</span>
+                    <span class="line">Adryan Salvador Cutipa Neyra</span>
+                </a> -->
+            </div>
+        </div>
+
+        <!-- Partículas flotantes -->
+        <div class="particles">
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+        </div>
+
+        <!-- Decoraciones flotantes -->
+        <div class="hero-decoration">
+            <div class="floating-feather feather-1">🪶</div>
+            <div class="floating-feather feather-2">🪶</div>
+            <div class="floating-feather feather-3">🪶</div>
+        </div>
+
+        <!-- Ondas decorativas -->
+        <div class="wave-decoration"></div>
+    </header>
 
 
 <!-- Carrusel Infinito de Aves de Puno -->
 <section class="aves-puno">
     <section class="collection-header">
                 <h2>Explora las especies de aves del Altiplano</h2>
+
+                <a href="quiz.html" class="quiz-button">
+                    <span class="icon">🧠</span>
+                    Hacer Quiz
+                </a>
             </section>
     <div class="carousel-container">
         <div class="carousel-track">
@@ -74,10 +121,14 @@
             </div>
         </div>
     </div>
+    
 </section>
+
+
     <main class="main-content">
         <div class="container">
             <section class="collection-header" id="coleccion">
+                
                 <h2>Colección de Especies</h2>
                 <p>Explora nuestra selección de aves y descubre datos fascinantes sobre cada especie</p>
             </section>
@@ -660,6 +711,15 @@
                  alt="Ave del Altiplano de Puno" 
                  onerror="this.style.background='linear-gradient(135deg, #4db6ac, #80cbc4)'; this.style.color='white'; this.innerHTML='🦅<br>Imagen no disponible'; this.style.display='flex'; this.style.alignItems='center'; this.style.justifyContent='center'; this.style.fontSize='24px'; this.style.textAlign='center';">
         </div>
+    </div>
+
+    <div class="container">
+            <section class="collection-header" id="coleccion">
+                <a href="index.html" class="quiz-button">
+                    <span class="icon"></span>
+                    Ir al Inicio
+                </a>
+            </section>
     </div>
 
 

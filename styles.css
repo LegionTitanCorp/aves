@@ -12,153 +12,417 @@ body {
   line-height: 1.6;
 }
 
-/* Sección Hero */
 .hero-section {
-    background: linear-gradient(135deg, rgba(102, 126, 234, 0.7), rgba(118, 75, 162, 0.7));
-    padding: 120px 20px 80px;
-    text-align: center;
-    position: relative;
-    overflow: hidden;
-    min-height: 100vh;
-}
+            position: relative;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
 
-/* Portada de aves de fondo */
-.bird-cover {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: url('https://images.unsplash.com/photo-1555169062-013468b47731?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
-    z-index: -1;
-}
+        /* Video de fondo */
+        .video-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            object-fit: cover;
+        }
 
-/* Menú de navegación */
-.navbar {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    padding: 30px 0;
-    z-index: 10;
-    /* background: rgba(255, 255, 255, 0.1); */
-    /* backdrop-filter: blur(10px); */
-    /* border-bottom: 1px solid rgba(255, 255, 255, 0.2); */
-}
+        /* Overlay para oscurecer el video */
+        .video-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(33, 0, 85, 0.658), rgba(46, 0, 120, 0.658));
+            z-index: -1;
+        }
 
-.nav-menu {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    gap: 40px;
-}
+        /* Menú de navegación */
+        .navbar {
+            position: absolute;
+            top: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 100;
+        }
 
-.nav-link {
-    color: white;
-    text-decoration: none;
-    font-size: 1.1rem;
-    font-weight: 300;
-    letter-spacing: 1px;
-    padding: 10px 20px;
-    border-radius: 25px;
-    transition: all 0.3s ease;
-    background: rgba(255, 255, 255, 0.514);
-    border: 1px solid rgba(255, 255, 255, 0.658);
-}
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 15px 30px;
+            border-radius: 50px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
 
-.nav-link:hover {
-    background: rgba(255, 255, 255, 0.2);
-    transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-}
+        
 
-/* Contenido hero */
-.hero-content {
-    max-width: 800px;
-    margin: 0 auto;
-    z-index: 2;
-    position: relative;
-    margin-top: 60px;
-}
+        .nav-link {
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+        }
 
-.main-title {
-    color: white;
-    font-size: 4.5rem;
-    margin-bottom: 20px;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
-    font-weight: 300;
-    letter-spacing: 2px;
-}
+        .nav-link:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
 
-.main-title i {
-    color: #ceb007;
-    margin-right: 15px;
-    transform: rotate(-15deg);
-    display: inline-block;
-}
+        /* Logo imagen - Reducido margen izquierdo */
+        .logo-shield {
+            position: absolute;
+            top: 55%;
+            left: 25%; /* Reducido de 35% a 25% */
+            transform: translate(-50%, -50%);
+            width: 300px;
+            height: 300px;
+            z-index: 50;
+        }
 
-.subtitle {
-    color: rgba(255, 255, 255, 0.9);
-    font-size: 1.3rem;
-    margin-bottom: 0;
-    font-weight: 300;
-    text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
-}
+        .logo-shield img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            border-radius: 15px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 3px solid rgba(255, 255, 255, 0.3);
+        }
 
-/* Plumas flotantes animadas */
-.floating-feather {
-    position: absolute;
-    font-size: 2rem;
-    opacity: 0.6;
-    animation: float 6s ease-in-out infinite;
-    z-index: 1;
-}
+        /* Contenido principal - Separado más de la imagen */
+        .hero-content {
+            position: absolute;
+            left: 62%; /* Aumentado de 55% a 62% para separar más del logo */
+            top: 55%;
+            transform: translate(-50%, -50%);
+            text-align: left;
+            color: white;
+            max-width: 750px; /* Aumentado de 600px a 750px */
+            padding: 0 10px;
+        }
 
-.feather-1 {
-    top: 20%;
-    left: 10%;
-    animation-delay: 0s;
-}
+        .main-title {
+            font-size: 4rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
+            line-height: 1.1;
+        }
 
-.feather-2 {
-    top: 60%;
-    right: 15%;
-    animation-delay: 2s;
-}
+        .main-title i {
+            color: #FFD700;
+            margin-right: 15px;
+        }
 
-.feather-3 {
-    top: 40%;
-    left: 80%;
-    animation-delay: 4s;
-}
+        .subtitle {
+            font-size: 1.3rem;
+            font-weight: 300;
+            line-height: 1.6;
+            text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.7);
+            margin-bottom: 40px;
+        }
 
-@keyframes float {
-    0%, 100% { transform: translateY(0px) rotate(0deg); }
-    50% { transform: translateY(-20px) rotate(5deg); }
-}
+        /* Botones de acción */
+        .action-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: flex-start;
+            flex-wrap: wrap;
+        }
 
-/* Responsive */
-@media (max-width: 768px) {
-    .nav-menu {
-        gap: 20px;
-    }
-    
-    .nav-link {
-        font-size: 0.9rem;
-        padding: 8px 15px;
-    }
-    
-    .main-title {
-        font-size: 2.5rem;
-    }
-    
-    .hero-section {
-        padding: 100px 20px 60px;
-    }
-}
+        .action-btn {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            color: white;
+            padding: 15px 30px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.9rem;
+            min-width: 150px;
+        }
+
+        
+
+        .action-btn .line {
+        display: block;
+        white-space: normal;
+        }
+
+
+        .action-btn:hover {
+            background: rgba(255, 255, 255, 0.25);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        .action-btn.primary {
+            /* background: linear-gradient(135deg, #a80000, #d4ae00); */
+            background: #850000;
+            border-color: #ecc900;
+        }
+
+        .action-btn.primary:hover {
+            background: linear-gradient(135deg, #FF5722, #E68900);
+        }
+
+        /* Decoraciones flotantes */
+        .hero-decoration {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 10;
+        }
+
+        .floating-feather {
+            position: absolute;
+            font-size: 2rem;
+            opacity: 0.6;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .feather-1 {
+            top: 20%;
+            right: 15%;
+            animation-delay: -2s;
+        }
+
+        .feather-2 {
+            top: 60%;
+            right: 10%;
+            animation-delay: -4s;
+        }
+
+        .feather-3 {
+            top: 80%;
+            left: 10%;
+            animation-delay: -1s;
+        }
+
+        /* Partículas flotantes */
+        .particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 5;
+        }
+
+        .particle {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            animation: particleFloat 8s linear infinite;
+        }
+
+        .particle:nth-child(1) { width: 4px; height: 4px; left: 10%; animation-delay: 0s; }
+        .particle:nth-child(2) { width: 6px; height: 6px; left: 20%; animation-delay: -2s; }
+        .particle:nth-child(3) { width: 3px; height: 3px; left: 30%; animation-delay: -4s; }
+        .particle:nth-child(4) { width: 5px; height: 5px; left: 40%; animation-delay: -6s; }
+        .particle:nth-child(5) { width: 4px; height: 4px; left: 50%; animation-delay: -1s; }
+        .particle:nth-child(6) { width: 6px; height: 6px; left: 60%; animation-delay: -3s; }
+        .particle:nth-child(7) { width: 3px; height: 3px; left: 70%; animation-delay: -5s; }
+        .particle:nth-child(8) { width: 5px; height: 5px; left: 80%; animation-delay: -7s; }
+
+        /* Ondas decorativas */
+        .wave-decoration {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 150px;
+            background: linear-gradient(180deg, transparent, rgba(0, 40, 85, 0.3));
+            z-index: 20;
+        }
+
+        .wave-decoration::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 60px;
+            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 120'%3E%3Cpath d='M985.66,92.83C906.67,72,823.78,31,743.84,14.19c-82.26-17.34-168.06-16.33-250.45.39-57.84,11.73-114,31.07-172,41.86A600.21,600.21,0,0,1,0,27.35V120H1200V95.8C1132.19,118.92,1055.71,111.31,985.66,92.83Z' fill='rgba(255,255,255,0.1)'/%3E%3C/svg%3E") repeat-x;
+            background-size: 1200px 60px;
+            animation: waveMove 10s linear infinite;
+        }
+
+        /* Animaciones */
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(180deg); }
+        }
+
+        @keyframes particleFloat {
+            0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+            10% { opacity: 0.3; }
+            90% { opacity: 0.3; }
+            100% { transform: translateY(-100px) rotate(360deg); opacity: 0; }
+        }
+
+        @keyframes waveMove {
+            0% { background-position-x: 0; }
+            100% { background-position-x: 1200px; }
+        }
+
+        /* Portada de aves (mantenida para compatibilidad) */
+        .bird-cover {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(0, 40, 85, 0.3), rgba(0, 80, 120, 0.2));
+            z-index: -1;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .hero-section {
+                flex-direction: column;
+                justify-content: flex-start; /* Cambiado de center a flex-start */
+                align-items: center;
+                text-align: center;
+                padding: 120px 20px 20px; /* Añadido padding-top para espacio debajo del menú */
+            }
+
+            .logo-shield {
+                position: relative;
+                top: auto;
+                left: auto;
+                transform: none;
+                width: 300px;
+                height: 300px;
+                margin-bottom: 30px;
+                margin-top: 130px; /* Espacio adicional desde el menú */
+            }
+
+            .hero-content {
+                position: relative;
+                left: auto;
+                top: auto;
+                transform: none;
+                text-align: center;
+                max-width: 100%;
+                margin-top: 25px;
+            }
+
+            .main-title {
+                font-size: 2.5rem;
+            }
+
+            .subtitle {
+                font-size: 1.1rem;
+            }
+
+            .navbar {
+                position: absolute;
+                top: 20px;
+                left: 50%;
+                transform: translateX(-50%);
+                width: 90%;
+                padding: 10px;
+            }
+
+            .nav-menu {
+                flex-direction: column;
+                gap: 10px;
+                padding: 10px;
+            }
+
+            .action-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero-section {
+                flex-direction: column;
+                justify-content: flex-start; /* Cambiado de center a flex-start */
+                align-items: center;
+                text-align: center;
+                padding: 120px 20px 20px; /* Añadido padding-top para espacio debajo del menú */
+            }
+
+            .logo-shield {
+                position: relative;
+                top: auto;
+                left: auto;
+                transform: none;
+                width: 150px;
+                height: 150px;
+                margin-bottom: 30px;
+                margin-top: 130px; /* Espacio adicional desde el menú */
+            }
+
+            .hero-content {
+                position: relative;
+                left: auto;
+                top: auto;
+                transform: none;
+                text-align: center;
+                max-width: 100%;
+                margin-top: 25px;
+            }
+
+            .main-title {
+                font-size: 2.5rem;
+            }
+
+            .subtitle {
+                font-size: 1.1rem;
+            }
+
+            .navbar {
+                position: absolute;
+                top: 20px;
+                left: 50%;
+                transform: translateX(-50%);
+                width: 90%;
+                padding: 10px;
+            }
+
+            .nav-menu {
+                flex-direction: column;
+                gap: 10px;
+                padding: 10px;
+            }
+
+            .action-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+
+
+
+
 
 /* Contenido principal */
 .main-content {
@@ -177,6 +441,7 @@ body {
     text-align: center;
     margin-bottom: 60px;
 }
+
 
 .collection-header h2 {
     color: #2c3e50;
@@ -536,6 +801,13 @@ body {
         height: 320px;
         border-radius: 10px;
     }
+
+    .carousel-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
     
     @keyframes scroll-small {
         0% {
@@ -599,6 +871,7 @@ body {
                 inset 0 1px 0 rgba(255, 255, 255, 0.8);
             max-width: 1200px;
             margin: 40px auto;
+            margin-bottom: 100px;
             position: relative;
             overflow: hidden;
             transition: all 0.3s ease;
@@ -794,10 +1067,104 @@ body {
         @media (max-width: 480px) {
             .banner {
                 padding: 20px 15px;
-                margin: 20px auto;
+                margin: 5px 25px 60px 25px;
             }
 
             .banner-imagen img {
                 max-width: 250px;
+            }
+        }
+
+
+
+
+
+/* ESTILO DE BOTONES DE ACCIÓN */
+
+.quiz-button {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 16px 32px;
+            font-size: 18px;
+            font-weight: bold;
+            text-decoration: none;
+            color: white;
+            background: linear-gradient(45deg, #550101, #b90000);
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 25px rgba(255, 107, 107, 0.3);
+            overflow: hidden;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 25px;
+        }
+
+        .quiz-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .quiz-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(255, 107, 107, 0.4);
+            background: linear-gradient(45deg, #320061, #590074);
+        }
+
+        .quiz-button:hover::before {
+            left: 100%;
+        }
+
+        .quiz-button:active {
+            transform: translateY(-1px);
+            box-shadow: 0 6px 20px rgba(255, 107, 107, 0.3);
+        }
+
+        .quiz-button .icon {
+            display: inline-block;
+            margin-right: 8px;
+            font-size: 20px;
+            transition: transform 0.3s ease;
+        }
+
+        .quiz-button:hover .icon {
+            transform: rotate(360deg);
+        }
+
+        /* Efecto de pulso */
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 8px 25px rgba(255, 107, 107, 0.3);
+            }
+            50% {
+                box-shadow: 0 8px 25px rgba(255, 107, 107, 0.6);
+            }
+            100% {
+                box-shadow: 0 8px 25px rgba(255, 107, 107, 0.3);
+            }
+        }
+
+        .quiz-button {
+            animation: pulse 2s infinite;
+        }
+
+        .quiz-button:hover {
+            animation: none;
+        }
+
+        /* Responsive */
+        @media (max-width: 480px) {
+            .quiz-button {
+                padding: 14px 28px;
+                font-size: 16px;
             }
         }
