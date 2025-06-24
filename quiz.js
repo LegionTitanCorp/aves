@@ -25,7 +25,7 @@ class QuizAvesAndinas {
             // Aguilucho Negro
             {
                 question: "¿Cuál de estas aves tiene el plumaje completamente negro?",
-                options: ["Águila Ratonera Pechinegra", "Aguilucho Negro", "Cigüeñuela", "Chullumpi"],
+                options: ["Águila Ratonera Pechinegra", "Aguilucho Negro", "Cigüeñuela", "Pato Barcino"],
                 correct: 1,
                 explanation: "El Aguilucho Negro se caracteriza por su plumaje negro azabache."
             },
@@ -66,16 +66,16 @@ class QuizAvesAndinas {
             
             // Chullumpi
             {
-                question: "¿Cuál es el peso aproximado del Chullumpi?",
+                question: "¿Cuál es el peso aproximado del Pato Barcino?",
                 options: ["200-300 g", "500-800 g", "1.2-2.0 kg", "40-55 g"],
                 correct: 1,
-                explanation: "El Chullumpi pesa entre 500-800 gramos."
+                explanation: "El Pato Barcino pesa entre 500-800 gramos."
             },
             {
-                question: "¿A qué orden pertenece el Chullumpi?",
+                question: "¿A qué orden pertenece el Pato Barcino?",
                 options: ["Charadriiformes", "Anseriformes", "Accipitriformes", "Gruiformes"],
                 correct: 1,
-                explanation: "El Chullumpi pertenece al orden Anseriformes, como todos los patos."
+                explanation: "El Pato Barcino pertenece al orden Anseriformes, como todos los patos."
             },
             
             // Cigüeñuela
@@ -432,28 +432,28 @@ class QuizAvesAndinas {
 
     // Pato Sutro
     {
-        question: "¿Cuál es la característica más distintiva del macho del Pato Sutro?",
+        question: "¿Cuál es la característica más distintiva del macho del Pato Colorado?",
         options: ["Plumaje verde brillante", "Plumaje rojo ladrillo y pico azul celeste", "Cola muy larga", "Cresta prominente"],
         correct: 1,
-        explanation: "Los machos del Pato Sutro tienen plumaje castaño intenso (rojo ladrillo) y un pico celeste muy visible."
+        explanation: "Los machos del Pato Colorado tienen plumaje castaño intenso (rojo ladrillo) y un pico celeste muy visible."
     },
     {
-        question: "¿Dónde se encuentra principalmente el Pato Sutro?",
+        question: "¿Dónde se encuentra principalmente el Pato Colorado?",
         options: ["En todo Perú", "En la costa central del Perú", "Solo en la sierra", "En la selva amazónica"],
         correct: 1,
-        explanation: "El Pato Sutro se encuentra principalmente en la costa central del Perú, como en los pantanos de Villa."
+        explanation: "El Pato Colorado se encuentra principalmente en la costa central del Perú, como en los pantanos de Villa."
     },
     {
-        question: "¿Cuál es el estado de conservación del Pato Sutro?",
+        question: "¿Cuál es el estado de conservación del Pato Colorado?",
         options: ["Preocupación Menor", "Vulnerable", "En Peligro Crítico", "Extinto"],
         correct: 1,
-        explanation: "El Pato Sutro está clasificado como Vulnerable debido a la pérdida de hábitat en humedales costeros."
+        explanation: "El Pato Colorado está clasificado como Vulnerable debido a la pérdida de hábitat en humedales costeros."
     },
     {
-        question: "¿Por qué es difícil observar al Pato Sutro?",
+        question: "¿Por qué es difícil observar al Pato Colorado?",
         options: ["Es nocturno", "Se oculta entre juncos y totoras", "Vuela muy rápido", "Es muy pequeño"],
         correct: 1,
-        explanation: "El Pato Sutro es difícil de observar porque se oculta fácilmente entre juncos y totoras de la vegetación acuática."
+        explanation: "El Pato Colorado es difícil de observar porque se oculta fácilmente entre juncos y totoras de la vegetación acuática."
     },
 
     // Preguntas comparativas y de distribución
@@ -562,28 +562,28 @@ class QuizAvesAndinas {
 
     // Zambullidor
     {
-        question: "¿Cuál es la principal adaptación del Zambullidor para el buceo?",
+        question: "¿Cuál es la principal adaptación del Zambullidor del Titicaca del Titicaca para el buceo?",
         options: ["Pico muy largo", "Cuerpo hidrodinámico y patas palmeadas", "Alas muy grandes", "Cola prensil"],
         correct: 1,
-        explanation: "El Zambullidor tiene un cuerpo hidrodinámico, patas traseras palmeadas y plumaje impermeable para bucear eficientemente."
+        explanation: "El Zambullidor del Titicaca del Titicaca tiene un cuerpo hidrodinámico, patas traseras palmeadas y plumaje impermeable para bucear eficientemente."
     },
     {
-        question: "¿De qué se alimenta principalmente el Zambullidor?",
+        question: "¿De qué se alimenta principalmente el Zambullidor del Titicaca del Titicaca?",
         options: ["Plantas acuáticas", "Peces pequeños e insectos acuáticos", "Semillas", "Néctar"],
         correct: 1,
-        explanation: "El Zambullidor se alimenta de peces pequeños, insectos acuáticos y crustáceos que captura bajo el agua."
+        explanation: "El Zambullidor del Titicaca del Titicaca se alimenta de peces pequeños, insectos acuáticos y crustáceos que captura bajo el agua."
     },
     {
-        question: "¿A qué orden pertenece el Zambullidor?",
+        question: "¿A qué orden pertenece el Zambullidor del Titicaca del Titicaca?",
         options: ["Anseriformes", "Podicipediformes", "Pelecaniformes", "Charadriiformes"],
         correct: 1,
-        explanation: "El Zambullidor pertenece al orden Podicipediformes, especializado en aves buceadoras."
+        explanation: "El Zambullidor del Titicaca pertenece al orden Podicipediformes, especializado en aves buceadoras."
     },
     {
-        question: "¿Cuál es el peso del Zambullidor?",
+        question: "¿Cuál es el peso del Zambullidor del Titicaca?",
         options: ["100-150 g", "250-400 g", "500-600 g", "700-800 g"],
         correct: 1,
-        explanation: "El Zambullidor pesa entre 250-400 gramos."
+        explanation: "El Zambullidor del Titicaca pesa entre 250-400 gramos."
     },
 
     // Zampullín Plateado
