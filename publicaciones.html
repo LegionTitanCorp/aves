@@ -1,0 +1,1628 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aves - Comunidad de Observadores</title>
+    <style>
+        :root {
+            --primary-color: #1a4f1a;
+            --secondary-color: #2d6b2d;
+            --accent-color: #4a8b3a;
+            --light-accent: #6ba85b;
+            --background-color: #f5f8f5;
+            --card-color: #ffffff;
+            --text-color: #2c3e50;
+            --light-green: #e8f4e8;
+            --border-color: #d0dfd0;
+            --error-color: #c0392b;
+            --success-color: #27ae60;
+            --warning-color: #f39c12;
+            --shadow-color: rgba(26, 79, 26, 0.12);
+            --reaction-count-color: #000000;
+        }
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, var(--background-color) 0%, var(--light-green) 100%);
+            color: var(--text-color);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 30px 20px;
+            border-radius: 15px;
+            box-shadow: 0 6px 25px var(--shadow-color);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="1.5" fill="rgba(255,255,255,0.08)"/><circle cx="80" cy="40" r="1" fill="rgba(255,255,255,0.08)"/><circle cx="40" cy="80" r="0.8" fill="rgba(255,255,255,0.08)"/><circle cx="90" cy="80" r="2" fill="rgba(255,255,255,0.08)"/><circle cx="10" cy="60" r="1.2" fill="rgba(255,255,255,0.08)"/></svg>') repeat;
+            animation: float 25s linear infinite;
+            pointer-events: none;
+        }
+        
+        @keyframes float {
+            0% { transform: translate(0, 0) rotate(0deg); }
+            100% { transform: translate(-50px, -50px) rotate(360deg); }
+        }
+        
+        h1 {
+            font-size: 2.2rem;
+            margin-bottom: 8px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            position: relative;
+            z-index: 1;
+        }
+        
+        .subtitle {
+            font-size: 1rem;
+            opacity: 0.9;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .main-content {
+            display: grid;
+            grid-template-columns: 1fr 300px;
+            gap: 25px;
+            align-items: start;
+        }
+        
+        .left-column {
+            min-width: 0;
+        }
+        
+        .right-column {
+            position: sticky;
+            top: 20px;
+        }
+        
+        .card {
+            background: var(--card-color);
+            border-radius: 12px;
+            box-shadow: 0 4px 20px var(--shadow-color);
+            padding: 20px;
+            margin-bottom: 20px;
+            border: 1px solid var(--border-color);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 25px var(--shadow-color);
+        }
+        
+        .form-group {
+            margin-bottom: 16px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 6px;
+            font-weight: 600;
+            color: var(--primary-color);
+            font-size: 14px;
+        }
+        
+        input, textarea, select {
+            width: 100%;
+            padding: 10px 12px;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            font-size: 14px;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        input:focus, textarea:focus, select:focus {
+            outline: none;
+            border-color: var(--accent-color);
+            box-shadow: 0 0 0 2px rgba(74, 139, 58, 0.1);
+        }
+        
+        textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+        
+        .file-input-wrapper {
+            position: relative;
+            display: inline-block;
+            width: 100%;
+        }
+        
+        .file-input {
+            position: absolute;
+            left: -9999px;
+        }
+        
+        .file-input-label {
+            display: block;
+            padding: 10px 12px;
+            background: var(--light-green);
+            border: 1px dashed var(--accent-color);
+            border-radius: 8px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 14px;
+        }
+        
+        .file-input-label:hover {
+            background: var(--accent-color);
+            color: white;
+        }
+        
+        .image-preview {
+            margin-top: 12px;
+            max-width: 100%;
+            max-height: 200px;
+            object-fit: cover;
+            border-radius: 8px;
+            box-shadow: 0 3px 12px rgba(0,0,0,0.1);
+        }
+        
+        button {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 3px 12px rgba(26, 79, 26, 0.25);
+        }
+        
+        button:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 15px rgba(26, 79, 26, 0.35);
+        }
+        
+        .btn-secondary {
+            background: linear-gradient(135deg, var(--secondary-color), var(--accent-color));
+        }
+        
+        .btn-small {
+            padding: 6px 12px;
+            font-size: 12px;
+            border-radius: 15px;
+        }
+        
+        .publication {
+            margin-bottom: 25px;
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 20px;
+        }
+        
+        .publication-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+            padding: 12px 16px;
+            background: var(--light-green);
+            border-radius: 8px;
+        }
+        
+        .publication-author {
+            font-weight: bold;
+            color: var(--primary-color);
+            font-size: 1rem;
+        }
+        
+        .publication-date {
+            color: #666;
+            font-size: 13px;
+        }
+        
+        .publication-title {
+            font-size: 1.3rem;
+            color: var(--primary-color);
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+        
+        .publication-content {
+            margin-bottom: 12px;
+            line-height: 1.6;
+            font-size: 15px;
+        }
+        
+        .publication-image {
+            max-width: 100%;
+            max-height: 300px;
+            width: auto;
+            height: auto;
+            object-fit: cover;
+            border-radius: 8px;
+            margin: 12px 0;
+            box-shadow: 0 3px 12px rgba(0,0,0,0.1);
+            display: block;
+        }
+        
+        .comments-section {
+            margin-top: 20px;
+            padding: 16px;
+            background: var(--light-green);
+            border-radius: 10px;
+            border-left: 4px solid var(--accent-color);
+        }
+        
+        .comments-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+        
+        .comments-title {
+            color: var(--primary-color);
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+        
+        .comments-actions {
+            display: flex;
+            gap: 8px;
+        }
+        
+        .toggle-comments {
+            background: var(--accent-color);
+            color: white;
+            border: none;
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 12px;
+            cursor: pointer;
+        }
+        
+        .comment {
+            background: white;
+            margin-bottom: 12px;
+            padding: 12px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            transition: transform 0.2s ease;
+            border-left: 3px solid transparent;
+        }
+        
+        .comment:hover {
+            transform: translateX(3px);
+            border-left-color: var(--accent-color);
+        }
+        
+        .comment-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+        
+        .comment-author {
+            font-weight: bold;
+            color: var(--secondary-color);
+            font-size: 13px;
+        }
+        
+        .comment-date {
+            color: #777;
+            font-size: 11px;
+        }
+        
+        .comment-content {
+            margin-bottom: 10px;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+        
+        .comment-actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 10px;
+        }
+        
+        .comment-reactions {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+        }
+        
+        .reaction-btn {
+            background: none;
+            border: 1px solid var(--border-color);
+            padding: 4px 8px;
+            border-radius: 15px;
+            cursor: pointer;
+            font-size: 12px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+        
+        .reaction-btn:hover {
+            background: var(--light-green);
+            transform: none;
+            box-shadow: none;
+        }
+        
+        .reaction-btn.active {
+            background: var(--accent-color);
+            color: white;
+            border-color: var(--accent-color);
+        }
+        
+        .reaction-count {
+            color: var(--reaction-count-color);
+            font-weight: 600;
+        }
+        
+        .comment-options {
+            display: flex;
+            gap: 6px;
+        }
+        
+        .reply-btn, .edit-btn, .delete-btn {
+            background: none;
+            border: none;
+            color: var(--accent-color);
+            cursor: pointer;
+            font-size: 11px;
+            padding: 2px 6px;
+            border-radius: 4px;
+            transition: background 0.3s ease;
+        }
+        
+        .reply-btn:hover, .edit-btn:hover {
+            background: var(--light-green);
+        }
+        
+        .delete-btn {
+            color: var(--error-color);
+        }
+        
+        .delete-btn:hover {
+            background: #ffeaea;
+        }
+        
+        .reply-form {
+            margin-top: 10px;
+            padding: 10px;
+            background: #f9f9f9;
+            border-radius: 6px;
+            border-left: 3px solid var(--accent-color);
+        }
+        
+        .nested-comment {
+            margin-left: 20px;
+            border-left: 2px solid var(--border-color);
+            padding-left: 12px;
+        }
+        
+        .alert {
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 16px;
+            font-weight: 500;
+            font-size: 14px;
+        }
+        
+        .alert-error {
+            background: #ffeaea;
+            color: var(--error-color);
+            border: 1px solid var(--error-color);
+        }
+        
+        .alert-success {
+            background: #eafaf1;
+            color: var(--success-color);
+            border: 1px solid var(--success-color);
+        }
+        
+        .alert-warning {
+            background: #fef5e7;
+            color: var(--warning-color);
+            border: 1px solid var(--warning-color);
+        }
+        
+        .hidden {
+            display: none;
+        }
+        
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            margin-bottom: 20px;
+            padding: 16px;
+            background: var(--light-green);
+            border-radius: 10px;
+        }
+        
+        .stat-item {
+            text-align: center;
+            padding: 10px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+        
+        .stat-number {
+            font-size: 1.4rem;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+        
+        .stat-label {
+            font-size: 0.85rem;
+            color: #666;
+            margin-top: 2px;
+        }
+        
+        .search-filter {
+            margin-bottom: 20px;
+        }
+        
+        .search-input {
+            width: 100%;
+            padding: 10px 12px;
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            font-size: 14px;
+            background: white;
+        }
+        
+        .filter-tabs {
+            display: flex;
+            gap: 8px;
+            margin-top: 10px;
+        }
+        
+        .filter-tab {
+            padding: 6px 12px;
+            background: white;
+            border: 1px solid var(--border-color);
+            border-radius: 15px;
+            cursor: pointer;
+            font-size: 12px;
+            transition: all 0.3s ease;
+        }
+        
+        .filter-tab.active {
+            background: var(--accent-color);
+            color: white;
+            border-color: var(--accent-color);
+        }
+        
+        .publication-stats {
+            display: flex;
+            gap: 15px;
+            margin-top: 10px;
+            font-size: 13px;
+            color: #666;
+        }
+        
+        .publication-stat {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        /* Estilos para la modal de troleada */
+        .prank-modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(5px);
+        }
+
+        .prank-modal-overlay.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .prank-modal {
+            background: linear-gradient(135deg, var(--card-color), var(--light-green));
+            border-radius: 20px;
+            padding: 30px;
+            max-width: 500px;
+            width: 90%;
+            box-shadow: 0 20px 60px rgba(26, 79, 26, 0.3);
+            transform: scale(0.8) translateY(50px);
+            transition: all 0.3s ease;
+            border: 3px solid var(--accent-color);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .prank-modal-overlay.show .prank-modal {
+            transform: scale(1) translateY(0);
+        }
+
+        .prank-modal::before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            right: -10px;
+            bottom: -10px;
+            background: linear-gradient(45deg, var(--primary-color), var(--accent-color), var(--secondary-color), var(--light-accent));
+            background-size: 400% 400%;
+            animation: gradientShift 3s ease infinite;
+            z-index: -1;
+            border-radius: 25px;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .prank-modal-header {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .prank-bird-icon {
+            font-size: 4rem;
+            margin-bottom: 15px;
+            animation: bounce 2s infinite;
+            display: block;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .prank-title {
+            color: var(--primary-color);
+            font-size: 1.8rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .prank-subtitle {
+            color: var(--secondary-color);
+            font-size: 1rem;
+            margin-bottom: 20px;
+        }
+
+        .prank-content {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 25px;
+            box-shadow: inset 0 2px 10px rgba(0,0,0,0.05);
+            border-left: 5px solid var(--accent-color);
+        }
+
+        .prank-question {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            line-height: 1.4;
+        }
+
+        .prank-hint {
+            background: var(--light-green);
+            padding: 15px;
+            border-radius: 10px;
+            margin: 15px 0;
+            border-left: 4px solid var(--accent-color);
+            font-size: 0.9rem;
+            color: var(--text-color);
+        }
+
+        .prank-input {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid var(--border-color);
+            border-radius: 10px;
+            font-size: 16px;
+            text-align: center;
+            font-weight: 600;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            margin-bottom: 15px;
+        }
+
+        .prank-input:focus {
+            outline: none;
+            border-color: var(--accent-color);
+            box-shadow: 0 0 0 3px rgba(74, 139, 58, 0.2);
+            transform: scale(1.02);
+        }
+
+        .prank-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+        }
+
+        .prank-btn {
+            padding: 12px 25px;
+            border: none;
+            border-radius: 25px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .prank-btn-primary {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+        }
+
+        .prank-btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(26, 79, 26, 0.3);
+        }
+
+        .prank-btn-secondary {
+            background: linear-gradient(135deg, #6c757d, #5a6268);
+            color: white;
+        }
+
+        .prank-btn-secondary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(108, 117, 125, 0.3);
+        }
+
+        .prank-error-message {
+            background: #ffebee;
+            color: #c62828;
+            padding: 12px;
+            border-radius: 8px;
+            margin-top: 15px;
+            border-left: 4px solid #c62828;
+            font-size: 14px;
+            text-align: center;
+            animation: shake 0.5s ease-in-out;
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-5px); }
+            75% { transform: translateX(5px); }
+        }
+
+        .prank-attempts {
+            text-align: center;
+            color: var(--warning-color);
+            font-size: 0.9rem;
+            margin-top: 10px;
+            font-weight: 600;
+        }
+
+        .flying-bird {
+            position: fixed;
+            font-size: 2rem;
+            z-index: 999;
+            pointer-events: none;
+            animation: flyAcross 3s linear infinite;
+        }
+
+        @keyframes flyAcross {
+            0% {
+                left: -100px;
+                top: 20%;
+            }
+            100% {
+                left: 100%;
+                top: 80%;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+            
+            .main-content {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .right-column {
+                position: static;
+                order: -1;
+            }
+            
+            header {
+                padding: 25px 15px;
+            }
+            
+            h1 {
+                font-size: 1.8rem;
+            }
+            
+            .card {
+                padding: 16px;
+            }
+            
+            .publication-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 8px;
+            }
+            
+            .stats {
+                grid-template-columns: 1fr;
+                gap: 8px;
+            }
+            
+            .publication-image {
+                max-height: 200px;
+            }
+
+            .prank-modal {
+                padding: 20px;
+                max-width: 95%;
+            }
+
+            .prank-bird-icon {
+                font-size: 3rem;
+            }
+
+            .prank-title {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🦅 Comunidad de Aves</h1>
+            <p class="subtitle">Comparte tus experiencias y conocimientos sobre la fascinante vida de las aves</p>
+        </header>
+        
+        <div class="main-content">
+            <div class="left-column">
+                <div class="card">
+                    <h2>✨ Crear nueva publicación</h2>
+                    <div id="publication-alert" class="alert hidden"></div>
+                    <form id="publication-form">
+                        <div class="form-group">
+                            <label for="author">👤 Tu nombre:</label>
+                            <input type="text" id="author" required placeholder="Ingresa tu nombre">
+                        </div>
+                        <div class="form-group">
+                            <label for="title">📝 Título de la publicación:</label>
+                            <input type="text" id="title" required placeholder="¿Qué ave observaste hoy?">
+                        </div>
+                        <div class="form-group">
+                            <label for="content">📄 Contenido:</label>
+                            <textarea id="content" required placeholder="Comparte tu experiencia, observaciones, datos interesantes..."></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="image">📷 Imagen (opcional):</label>
+                            <div class="file-input-wrapper">
+                                <input type="file" id="image" class="file-input" accept="image/*">
+                                <label for="image" class="file-input-label">
+                                    📸 Haz clic para seleccionar una imagen
+                                </label>
+                            </div>
+                            <img id="image-preview" class="image-preview hidden" alt="Vista previa">
+                        </div>
+                        <button type="submit">🚀 Publicar</button>
+                    </form>
+                </div>
+                
+                <div id="publications-container">
+                    <!-- Las publicaciones se cargarán aquí dinámicamente -->
+                </div>
+            </div>
+            
+            <div class="right-column">
+                <div class="stats">
+                    <div class="stat-item">
+                        <div class="stat-number" id="total-publications">0</div>
+                        <div class="stat-label">Publicaciones</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number" id="total-comments">0</div>
+                        <div class="stat-label">Comentarios</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number" id="total-reactions">0</div>
+                        <div class="stat-label">Reacciones</div>
+                    </div>
+                </div>
+                
+                <div class="card search-filter">
+                    <h3>🔍 Buscar y Filtrar</h3>
+                    <input type="text" id="search-input" class="search-input" placeholder="Buscar publicaciones...">
+                    <div class="filter-tabs">
+                        <div class="filter-tab active" data-filter="all">Todas</div>
+                        <div class="filter-tab" data-filter="recent">Recientes</div>
+                        <div class="filter-tab" data-filter="popular">Populares</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de Troleada -->
+    <div id="prank-modal-overlay" class="prank-modal-overlay">
+        <div class="prank-modal">
+            <div class="prank-modal-header">
+                <div class="prank-bird-icon">🦆</div>
+                <h3 class="prank-title">¡Alto ahí, Observador de Aves! 🔒</h3>
+                <p class="prank-subtitle">Para eliminar este comentario, demuestra tu conocimiento ornitológico</p>
+            </div>
+            
+            <div class="prank-content">
+                <div class="prank-question" id="prank-question">
+                    ¿Cuál es el nombre científico de la Huallata que habita en la Bahía de Puno?
+                </div>
+                
+                <div class="prank-hint">
+                    💡 <strong>Pista:</strong> Es una especie de ganso andino con plumaje distintivo negro y blanco. Su nombre científico tiene dos partes como todos los nombres binomiales.
+                </div>
+                
+                <input type="text" id="prank-input" class="prank-input" placeholder="Escribe la respuesta aquí..." autocomplete="off">
+                
+                <div id="prank-error" class="prank-error-message hidden"></div>
+                <div id="prank-attempts" class="prank-attempts hidden"></div>
+            </div>
+            
+            <div class="prank-buttons">
+                <button class="prank-btn prank-btn-primary" id="prank-submit">🔓 Verificar Respuesta</button>
+                <button class="prank-btn prank-btn-secondary" id="prank-cancel">❌ Cancelar</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Lista de palabras prohibidas
+        const forbiddenWords = [
+            'spam', 'odio', 'violencia', 'insulto', 'groseria', 
+            'malo', 'tonto', 'estupido', 'idiota'
+        ];
+        
+        // Tipos de reacciones disponibles
+        const reactionTypes = [
+            { emoji: '👍', name: 'me_gusta', label: 'Me gusta' },
+            { emoji: '❤️', name: 'amor', label: 'Me encanta' },
+            { emoji: '😮', name: 'sorpresa', label: 'Sorprendente' },
+            { emoji: '🦅', name: 'ave', label: 'Gran ave!' }
+        ];
+        
+        // Sistema de troleada con preguntas sobre aves de Puno
+        const prankChallenges = [
+            {
+                question: "¿Cuál es el nombre científico de la Huallata que habita en la Bahía de Puno?",
+                answer: "chloephaga melanoptera",
+                hint: "💡 <strong>Pista:</strong> Es una especie de ganso andino con plumaje distintivo negro y blanco. Su nombre científico tiene dos partes como todos los nombres binomiales.",
+                icon: "🦆",
+                wrongAnswers: [
+                    "¡Ups! La Huallata no es esa especie. Intenta de nuevo, observador novato 🤔",
+                    "Mmm, parece que necesitas estudiar más la avifauna andina 📚",
+                    "¡Casi! Pero no es correcto. La Huallata está esperando... 🦢"
+                ]
+            },
+            {
+                question: "¿Cómo se llama científicamente el ave conocida como 'Zambullidor del Titicaca'?",
+                answer: "rollandia microptera",
+                hint: "💡 <strong>Pista:</strong> Es un ave acuática endémica del lago Titicaca, con alas muy pequeñas que no le permiten volar. Su género rinde honor a un naturalista francés.",
+                icon: "🐦",
+                wrongAnswers: [
+                    "¡Nope! Este zambullidor es único en el mundo 🌊",
+                    "Incorrecto. Es una especie muy especial del Titicaca 🏔️",
+                    "¡Fallaste! Esta ave es un tesoro de nuestro altiplano 💎"
+                ]
+            },
+            {
+                question: "¿Cuál es el nombre común del ave con nombre científico 'Phoenicoparrus andinus'?",
+                answer: "parihuana",
+                hint: "💡 <strong>Pista:</strong> Es un ave rosada muy elegante, símbolo patrio del Perú. Su nombre proviene del quechua y significa algo relacionado con su hermoso color.",
+                icon: "🦩",
+                wrongAnswers: [
+                    "¡Error! Este ave rosada es todo un símbolo nacional 🇵🇪",
+                    "¡Nada que ver! Es el ave más elegante del altiplano 💅",
+                    "¡Incorrecto! Su plumaje rosado debería darte una pista 🌸"
+                ]
+            },
+            {
+                question: "¿Qué ave andina tiene el nombre científico 'Vanellus resplendens'?",
+                answer: "leke leke",
+                hint: "💡 <strong>Pista:</strong> Su nombre común suena como su propio canto. Es un ave terrestre con patas largas que se encuentra en los pastizales del altiplano.",
+                icon: "🦜",
+                wrongAnswers: [
+                    "¡Error! Esta ave te está 'cantando' la respuesta 🎵",
+                    "¡Fallaste! Su nombre imita su propio sonido 🔊",
+                    "¡Incorrecto! Escucha bien el canto de las aves andinas 👂"
+                ]
+            },
+            {
+                question: "¿Cuál es el nombre científico del 'Chorlito de Puna'?",
+                answer: "charadrius alticola",
+                hint: "💡 <strong>Pista:</strong> Es un ave playera que vive en las alturas. Su nombre específico hace referencia a que habita en lugares elevados (altos).",
+                icon: "🐤",
+                wrongAnswers: [
+                    "¡Nope! Este chorlito vive muy alto en los Andes ⛰️",
+                    "¡Error! Su nombre indica dónde le gusta vivir 🏔️",
+                    "¡Fallaste! Piensa en las alturas del altiplano 📍"
+                ]
+            }
+        ];
+        
+        let currentPrankChallenge = null;
+        let prankAttempts = 0;
+        let maxPrankAttempts = 3;
+        let currentDeleteAction = null;
+        
+        let currentFilter = 'all';
+        let searchTerm = '';
+        
+        // Función para crear aves volando
+        function createFlyingBird() {
+            const birds = ['🦅', '🦆', '🦢', '🕊️', '🦩'];
+            const bird = document.createElement('div');
+            bird.className = 'flying-bird';
+            bird.textContent = birds[Math.floor(Math.random() * birds.length)];
+            bird.style.top = Math.random() * 50 + 10 + '%';
+            document.body.appendChild(bird);
+            
+            setTimeout(() => {
+                if (bird.parentNode) {
+                    bird.parentNode.removeChild(bird);
+                }
+            }, 3000);
+        }
+        
+        // Función para mostrar la modal de troleada
+        function showPrankModal(deleteCallback) {
+            currentDeleteAction = deleteCallback;
+            currentPrankChallenge = prankChallenges[Math.floor(Math.random() * prankChallenges.length)];
+            prankAttempts = 0;
+            
+            // Crear algunas aves volando para el efecto
+            for (let i = 0; i < 3; i++) {
+                setTimeout(() => createFlyingBird(), i * 1000);
+            }
+            
+            const modal = document.getElementById('prank-modal-overlay');
+            const question = document.getElementById('prank-question');
+            const hint = document.querySelector('.prank-hint');
+            const icon = document.querySelector('.prank-bird-icon');
+            const input = document.getElementById('prank-input');
+            const errorDiv = document.getElementById('prank-error');
+            const attemptsDiv = document.getElementById('prank-attempts');
+            
+            // Configurar el desafío
+            question.textContent = currentPrankChallenge.question;
+            hint.innerHTML = currentPrankChallenge.hint;
+            icon.textContent = currentPrankChallenge.icon;
+            input.value = '';
+            errorDiv.classList.add('hidden');
+            attemptsDiv.classList.add('hidden');
+            
+            // Mostrar modal
+            modal.classList.add('show');
+            setTimeout(() => input.focus(), 300);
+        }
+        
+        // Función para ocultar la modal de troleada
+        function hidePrankModal() {
+            const modal = document.getElementById('prank-modal-overlay');
+            modal.classList.remove('show');
+            currentDeleteAction = null;
+            currentPrankChallenge = null;
+        }
+        
+        // Función para verificar la respuesta del desafío
+        function checkPrankAnswer() {
+            const input = document.getElementById('prank-input');
+            const userAnswer = input.value.trim().toLowerCase();
+            const correctAnswer = currentPrankChallenge.answer.toLowerCase();
+            const errorDiv = document.getElementById('prank-error');
+            const attemptsDiv = document.getElementById('prank-attempts');
+            
+            if (userAnswer === correctAnswer) {
+                // Respuesta correcta - ejecutar la eliminación
+                hidePrankModal();
+                if (currentDeleteAction) {
+                    currentDeleteAction();
+                }
+                
+                // Mostrar mensaje de éxito
+                setTimeout(() => {
+                    alert('🎉 ¡Correcto! Eres un verdadero conocedor de las aves de Puno. Comentario eliminado.');
+                }, 500);
+                
+            } else {
+                // Respuesta incorrecta
+                prankAttempts++;
+                const wrongAnswers = currentPrankChallenge.wrongAnswers;
+                const randomWrong = wrongAnswers[Math.floor(Math.random() * wrongAnswers.length)];
+                
+                errorDiv.textContent = randomWrong;
+                errorDiv.classList.remove('hidden');
+                
+                attemptsDiv.textContent = `Intento ${prankAttempts} de ${maxPrankAttempts}`;
+                attemptsDiv.classList.remove('hidden');
+                
+                // Crear ave volando por cada intento fallido
+                createFlyingBird();
+                
+                if (prankAttempts >= maxPrankAttempts) {
+                    setTimeout(() => {
+                        hidePrankModal();
+                        alert('🦅 ¡Se acabaron los intentos! Las aves de Puno han protegido este comentario. Estudia más ornitología y vuelve después 📚');
+                    }, 2000);
+                } else {
+                    // Limpiar input para nuevo intento
+                    setTimeout(() => {
+                        input.value = '';
+                        input.focus();
+                    }, 1500);
+                }
+            }
+        }
+        
+        // Event listeners para la modal de troleada
+        document.getElementById('prank-submit').addEventListener('click', checkPrankAnswer);
+        document.getElementById('prank-cancel').addEventListener('click', hidePrankModal);
+        
+        // Permitir envío con Enter
+        document.getElementById('prank-input').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                checkPrankAnswer();
+            }
+        });
+        
+        // Cerrar modal al hacer clic fuera
+        document.getElementById('prank-modal-overlay').addEventListener('click', function(e) {
+            if (e.target === this) {
+                hidePrankModal();
+            }
+        });
+        
+        // Función para verificar texto contra palabras prohibidas
+        function checkForForbiddenWords(text) {
+            const lowerText = text.toLowerCase();
+            const foundWords = [];
+            
+            forbiddenWords.forEach(word => {
+                if (lowerText.includes(word.toLowerCase())) {
+                    foundWords.push(word);
+                }
+            });
+            
+            return foundWords;
+        }
+        
+        // Función para mostrar alertas
+        function showAlert(elementId, message, type) {
+            const alertElement = document.getElementById(elementId);
+            alertElement.textContent = message;
+            alertElement.classList.remove('hidden', 'alert-error', 'alert-success', 'alert-warning');
+            alertElement.classList.add(`alert-${type}`);
+            
+            setTimeout(() => {
+                alertElement.classList.add('hidden');
+            }, 5000);
+        }
+        
+        // Función para manejar la vista previa de imagen
+        function setupImagePreview() {
+            const imageInput = document.getElementById('image');
+            const imagePreview = document.getElementById('image-preview');
+            const label = document.querySelector('.file-input-label');
+            
+            imageInput.addEventListener('change', function(e) {
+                const file = e.target.files[0];
+                if (file) {
+                    if (file.size > 5 * 1024 * 1024) {
+                        showAlert('publication-alert', 'La imagen es demasiado grande. Máximo 5MB.', 'warning');
+                        return;
+                    }
+                    
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        imagePreview.src = e.target.result;
+                        imagePreview.classList.remove('hidden');
+                        label.textContent = `📸 Imagen seleccionada: ${file.name}`;
+                    };
+                    reader.readAsDataURL(file);
+                }
+            });
+        }
+        
+        // Función para actualizar estadísticas
+        function updateStats() {
+            const publications = JSON.parse(localStorage.getItem('publications')) || [];
+            let totalComments = 0;
+            let totalReactions = 0;
+            
+            publications.forEach(pub => {
+                totalComments += pub.comments.length;
+                pub.comments.forEach(comment => {
+                    if (comment.reactions) {
+                        Object.values(comment.reactions).forEach(count => {
+                            totalReactions += count;
+                        });
+                    }
+                });
+            });
+            
+            document.getElementById('total-publications').textContent = publications.length;
+            document.getElementById('total-comments').textContent = totalComments;
+            document.getElementById('total-reactions').textContent = totalReactions;
+        }
+        
+        // Función para manejar reacciones
+        function handleReaction(commentIndex, publicationIndex, reactionType) {
+            const publications = JSON.parse(localStorage.getItem('publications')) || [];
+            
+            if (publications[publicationIndex] && publications[publicationIndex].comments[commentIndex]) {
+                const comment = publications[publicationIndex].comments[commentIndex];
+                
+                if (!comment.reactions) {
+                    comment.reactions = {};
+                }
+                
+                if (!comment.reactions[reactionType]) {
+                    comment.reactions[reactionType] = 0;
+                }
+                
+                comment.reactions[reactionType]++;
+                
+                localStorage.setItem('publications', JSON.stringify(publications));
+                loadPublications();
+            }
+        }
+        
+        // Función para responder a un comentario
+        function replyToComment(publicationIndex, parentCommentIndex) {
+            const replyForm = document.getElementById(`reply-form-${publicationIndex}-${parentCommentIndex}`);
+            replyForm.classList.toggle('hidden');
+        }
+        
+        // Función para eliminar comentario (MODIFICADA con troleada)
+        function deleteComment(publicationIndex, commentIndex) {
+            const deleteAction = () => {
+                const publications = JSON.parse(localStorage.getItem('publications')) || [];
+                
+                if (publications[publicationIndex]) {
+                    publications[publicationIndex].comments.splice(commentIndex, 1);
+                    localStorage.setItem('publications', JSON.stringify(publications));
+                    loadPublications();
+                }
+            };
+            
+            // Mostrar modal de troleada en lugar de confirm normal
+            showPrankModal(deleteAction);
+        }
+        
+        // Función para filtrar publicaciones
+        function filterPublications(publications) {
+            let filtered = publications;
+            
+            // Filtrar por búsqueda
+            if (searchTerm) {
+                filtered = filtered.filter(pub => 
+                    pub.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                    pub.content.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                    pub.author.toLowerCase().includes(searchTerm.toLowerCase())
+                );
+            }
+            
+            // Filtrar por tipo
+            switch(currentFilter) {
+                case 'recent':
+                    filtered.sort((a, b) => new Date(b.date) - new Date(a.date));
+                    break;
+                case 'popular':
+                    filtered.sort((a, b) => b.comments.length - a.comments.length);
+                    break;
+                default:
+                    filtered.sort((a, b) => new Date(b.date) - new Date(a.date));
+            }
+            
+            return filtered;
+        }
+        
+        // Cargar publicaciones desde localStorage
+        function loadPublications() {
+            const publications = JSON.parse(localStorage.getItem('publications')) || [];
+            const container = document.getElementById('publications-container');
+            
+            container.innerHTML = '';
+            
+            if (publications.length === 0) {
+                container.innerHTML = `
+                    <div class="card">
+                        <p style="text-align: center; color: #666; font-size: 1rem;">
+                            🦅 No hay publicaciones aún. ¡Sé el primero en compartir una observación de aves!
+                        </p>
+                    </div>`;
+                updateStats();
+                return;
+            }
+            
+            const filteredPublications = filterPublications(publications);
+            
+            if (filteredPublications.length === 0) {
+                container.innerHTML = `
+                    <div class="card">
+                        <p style="text-align: center; color: #666; font-size: 1rem;">
+                            🔍 No se encontraron publicaciones con los criterios de búsqueda.
+                        </p>
+                    </div>`;
+                updateStats();
+                return;
+            }
+            
+            // Mostrar publicaciones filtradas
+            filteredPublications.forEach((pub, index) => {
+                const actualIndex = publications.indexOf(pub);
+                const publicationElement = document.createElement('div');
+                publicationElement.className = 'card publication';
+                
+                const imageHtml = pub.image ? 
+                    `<img src="${pub.image}" alt="Imagen de la publicación" class="publication-image">` : '';
+                
+                const totalReactions = pub.comments.reduce((total, comment) => {
+                    if (comment.reactions) {
+                        return total + Object.values(comment.reactions).reduce((sum, count) => sum + count, 0);
+                    }
+                    return total;
+                }, 0);
+                
+                const commentsHtml = pub.comments.map((comment, commentIndex) => {
+                    const reactionsHtml = reactionTypes.map(reaction => {
+                        const count = comment.reactions && comment.reactions[reaction.name] ? comment.reactions[reaction.name] : 0;
+                        return `
+                            <button class="reaction-btn" onclick="handleReaction(${commentIndex}, ${actualIndex}, '${reaction.name}')">
+                                ${reaction.emoji} <span class="reaction-count">${count}</span>
+                            </button>
+                        `;
+                    }).join('');
+                    
+                    return `
+                        <div class="comment">
+                            <div class="comment-header">
+                                <span class="comment-author">👤 ${comment.author}</span>
+                                <span class="comment-date">${new Date(comment.date).toLocaleString()}</span>
+                            </div>
+                            <div class="comment-content">${comment.content}</div>
+                            <div class="comment-actions">
+                                <div class="comment-reactions">
+                                    ${reactionsHtml}
+                                </div>
+                                <div class="comment-options">
+                                    <button class="reply-btn" onclick="replyToComment(${actualIndex}, ${commentIndex})">↩️ Responder</button>
+                                    <button class="delete-btn" onclick="deleteComment(${actualIndex}, ${commentIndex})">🗑️ Eliminar</button>
+                                </div>
+                            </div>
+                            <div id="reply-form-${actualIndex}-${commentIndex}" class="reply-form hidden">
+                                <div class="form-group">
+                                    <input type="text" placeholder="Tu nombre" required>
+                                </div>
+                                <div class="form-group">
+                                    <textarea placeholder="Escribe tu respuesta..." required></textarea>
+                                </div>
+                                <button type="button" class="btn-small" onclick="submitReply(${actualIndex}, ${commentIndex})">Responder</button>
+                                <button type="button" class="btn-small btn-secondary" onclick="replyToComment(${actualIndex}, ${commentIndex})">Cancelar</button>
+                            </div>
+                        </div>
+                    `;
+                }).join('');
+                
+                publicationElement.innerHTML = `
+                    <div class="publication-header">
+                        <span class="publication-author">👤 ${pub.author}</span>
+                        <span class="publication-date">📅 ${new Date(pub.date).toLocaleString()}</span>
+                    </div>
+                    <h3 class="publication-title">${pub.title}</h3>
+                    <div class="publication-content">${pub.content}</div>
+                    ${imageHtml}
+                    
+                    <div class="publication-stats">
+                        <div class="publication-stat">
+                            <span>💬</span> ${pub.comments.length} comentarios
+                        </div>
+                        <div class="publication-stat">
+                            <span>❤️</span> ${totalReactions} reacciones
+                        </div>
+                        <div class="publication-stat">
+                            <span>👁️</span> ${Math.floor(Math.random() * 50) + 10} visualizaciones
+                        </div>
+                    </div>
+                    
+                    <div class="comments-section">
+                        <div class="comments-header">
+                            <h4 class="comments-title">💬 Comentarios (${pub.comments.length})</h4>
+                            <div class="comments-actions">
+                                <button class="toggle-comments btn-small" onclick="toggleComments(${actualIndex})">
+                                    ${pub.comments.length > 3 ? 'Ver todos' : 'Ocultar'}
+                                </button>
+                            </div>
+                        </div>
+                        <div class="comment-form">
+                            <div id="comment-alert-${index}" class="alert hidden"></div>
+                            <form class="comment-form-element" data-publication-index="${actualIndex}">
+                                <div class="form-group">
+                                    <input type="text" placeholder="👤 Tu nombre" required>
+                                </div>
+                                <div class="form-group">
+                                    <textarea placeholder="💭 Escribe tu comentario..." required></textarea>
+                                </div>
+                                <button type="submit" class="btn-small">💬 Comentar</button>
+                            </form>
+                        </div>
+                        <div class="comments-list" id="comments-${actualIndex}">
+                            ${commentsHtml}
+                        </div>
+                    </div>
+                `;
+                
+                container.appendChild(publicationElement);
+            });
+            
+            // Agregar event listeners a los formularios de comentarios
+            document.querySelectorAll('.comment-form-element').forEach((form, formIndex) => {
+                form.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    const publicationIndex = parseInt(this.dataset.publicationIndex);
+                    const authorInput = this.querySelector('input[type="text"]');
+                    const contentTextarea = this.querySelector('textarea');
+                    
+                    const author = authorInput.value.trim();
+                    const content = contentTextarea.value.trim();
+                    
+                    // Validar campos
+                    if (!author || !content) {
+                        showAlert(`comment-alert-${formIndex}`, 'Por favor, completa todos los campos', 'error');
+                        return;
+                    }
+                    
+                    // Verificar palabras prohibidas
+                    const forbiddenInComment = checkForForbiddenWords(content);
+                    if (forbiddenInComment.length > 0) {
+                        showAlert(`comment-alert-${formIndex}`, 
+                                 `Tu comentario contiene palabras no permitidas: ${forbiddenInComment.join(', ')}`, 'error');
+                        return;
+                    }
+                    
+                    // Agregar comentario
+                    addComment(publicationIndex, author, content);
+                    
+                    // Limpiar formulario
+                    authorInput.value = '';
+                    contentTextarea.value = '';
+                    
+                    showAlert(`comment-alert-${formIndex}`, '✅ Comentario agregado correctamente', 'success');
+                });
+            });
+            
+            updateStats();
+        }
+        
+        // Función para alternar visibilidad de comentarios
+        function toggleComments(publicationIndex) {
+            const commentsContainer = document.getElementById(`comments-${publicationIndex}`);
+            const toggleBtn = event.target;
+            
+            if (commentsContainer.style.display === 'none') {
+                commentsContainer.style.display = 'block';
+                toggleBtn.textContent = 'Ocultar';
+            } else {
+                commentsContainer.style.display = 'none';
+                toggleBtn.textContent = 'Mostrar';
+            }
+        }
+        
+        // Función para enviar respuesta
+        function submitReply(publicationIndex, parentCommentIndex) {
+            const replyForm = document.getElementById(`reply-form-${publicationIndex}-${parentCommentIndex}`);
+            const authorInput = replyForm.querySelector('input[type="text"]');
+            const contentTextarea = replyForm.querySelector('textarea');
+            
+            const author = authorInput.value.trim();
+            const content = contentTextarea.value.trim();
+            
+            if (!author || !content) {
+                alert('Por favor, completa todos los campos');
+                return;
+            }
+            
+            // Verificar palabras prohibidas
+            const forbiddenInComment = checkForForbiddenWords(content);
+            if (forbiddenInComment.length > 0) {
+                alert(`Tu respuesta contiene palabras no permitidas: ${forbiddenInComment.join(', ')}`);
+                return;
+            }
+            
+            // Agregar respuesta como comentario normal (simplificado)
+            addComment(publicationIndex, author, `↩️ Respuesta: ${content}`);
+            
+            // Limpiar y ocultar formulario
+            authorInput.value = '';
+            contentTextarea.value = '';
+            replyForm.classList.add('hidden');
+        }
+        
+        // Función para agregar un comentario
+        function addComment(publicationIndex, author, content) {
+            const publications = JSON.parse(localStorage.getItem('publications')) || [];
+            
+            if (publications[publicationIndex]) {
+                publications[publicationIndex].comments.push({
+                    author,
+                    content,
+                    date: new Date().toISOString(),
+                    reactions: {}
+                });
+                
+                localStorage.setItem('publications', JSON.stringify(publications));
+                loadPublications();
+            }
+        }
+        
+        // Configurar filtros y búsqueda
+        function setupFiltersAndSearch() {
+            // Configurar tabs de filtro
+            document.querySelectorAll('.filter-tab').forEach(tab => {
+                tab.addEventListener('click', function() {
+                    document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
+                    this.classList.add('active');
+                    currentFilter = this.dataset.filter;
+                    loadPublications();
+                });
+            });
+            
+            // Configurar búsqueda
+            const searchInput = document.getElementById('search-input');
+            searchInput.addEventListener('input', function() {
+                searchTerm = this.value;
+                setTimeout(() => {
+                    loadPublications();
+                }, 300); // Debounce
+            });
+        }
+        
+        // Event listener para el formulario de publicación
+        document.getElementById('publication-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const author = document.getElementById('author').value.trim();
+            const title = document.getElementById('title').value.trim();
+            const content = document.getElementById('content').value.trim();
+            const imageFile = document.getElementById('image').files[0];
+            
+            // Validar campos
+            if (!author || !title || !content) {
+                showAlert('publication-alert', 'Por favor, completa todos los campos obligatorios', 'error');
+                return;
+            }
+            
+            // Verificar longitud mínima
+            if (title.length < 5) {
+                showAlert('publication-alert', 'El título debe tener al menos 5 caracteres', 'warning');
+                return;
+            }
+            
+            if (content.length < 10) {
+                showAlert('publication-alert', 'El contenido debe tener al menos 10 caracteres', 'warning');
+                return;
+            }
+            
+            // Verificar palabras prohibidas
+            const forbiddenInTitle = checkForForbiddenWords(title);
+            const forbiddenInContent = checkForForbiddenWords(content);
+            
+            if (forbiddenInTitle.length > 0 || forbiddenInContent.length > 0) {
+                const allForbidden = [...forbiddenInTitle, ...forbiddenInContent];
+                showAlert('publication-alert', 
+                         `Tu publicación contiene palabras no permitidas: ${allForbidden.join(', ')}`, 'error');
+                return;
+            }
+            
+            // Función para crear y guardar la publicación
+            function savePublication(imageData = null) {
+                const newPublication = {
+                    author,
+                    title,
+                    content,
+                    date: new Date().toISOString(),
+                    comments: [],
+                    image: imageData
+                };
+                
+                // Guardar en localStorage
+                const publications = JSON.parse(localStorage.getItem('publications')) || [];
+                publications.push(newPublication);
+                localStorage.setItem('publications', JSON.stringify(publications));
+                
+                // Limpiar formulario
+                document.getElementById('author').value = '';
+                document.getElementById('title').value = '';
+                document.getElementById('content').value = '';
+                document.getElementById('image').value = '';
+                document.getElementById('image-preview').classList.add('hidden');
+                document.querySelector('.file-input-label').textContent = '📸 Haz clic para seleccionar una imagen';
+                
+                showAlert('publication-alert', '✅ Publicación creada correctamente', 'success');
+                loadPublications();
+            }
+            
+            // Si hay imagen, convertirla a base64
+            if (imageFile) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    savePublication(e.target.result);
+                };
+                reader.readAsDataURL(imageFile);
+            } else {
+                savePublication();
+            }
+        });
+        
+        // Configurar eventos al cargar la página
+        document.addEventListener('DOMContentLoaded', function() {
+            setupImagePreview();
+            setupFiltersAndSearch();
+            loadPublications();
+            
+            // Crear algunas aves volando al iniciar
+            setTimeout(() => createFlyingBird(), 1000);
+            setTimeout(() => createFlyingBird(), 3000);
+            setTimeout(() => createFlyingBird(), 5000);
+        });
+        
+        // Hacer funciones globales para onclick
+        window.handleReaction = handleReaction;
+        window.replyToComment = replyToComment;
+        window.deleteComment = deleteComment;
+        window.toggleComments = toggleComments;
+        window.submitReply = submitReply;
+    </script>
+</body>
+</html>

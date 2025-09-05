@@ -1,0 +1,789 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aves de la Bahía de Puno - Investigación</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: #ffffff;
+            min-height: 100vh;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Header Navigation */
+        .header {
+            background: linear-gradient(135deg, #7c3aed, #a855f7);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 30px rgba(124, 58, 237, 0.25);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .back-btn {
+            background: rgba(255, 255, 255, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: white;
+            padding: 0.8rem 1.8rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            backdrop-filter: blur(20px);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .back-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .back-btn:hover::before {
+            left: 100%;
+        }
+
+        .back-btn:hover {
+            background: rgba(255, 255, 255, 0.25);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+
+        .nav-title {
+            color: white;
+            font-size: 2rem;
+            font-weight: 700;
+            text-align: center;
+            flex-grow: 1;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+
+        .nav-placeholder {
+            width: 140px;
+        }
+
+        /* Main Container */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 4rem 1rem;
+        }
+
+        .main-title {
+            text-align: center;
+            margin-bottom: 5rem;
+            opacity: 0;
+            transform: translateY(-40px);
+            animation: fadeInDown 1.2s ease-out 0.5s forwards;
+        }
+
+        .main-title h1 {
+            font-size: 4rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, #7c3aed, #a855f7, #ec4899);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            position: relative;
+        }
+
+        .main-title h1::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(135deg, #7c3aed, #a855f7);
+            border-radius: 2px;
+        }
+
+        .main-title p {
+            color: #6b7280;
+            font-size: 1.4rem;
+            font-weight: 400;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* Modern Timeline */
+        .timeline {
+            position: relative;
+            padding: 3rem 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 6px;
+            background: linear-gradient(180deg, #7c3aed, #a855f7, #ec4899, #f97316, #eab308, #10b981);
+            transform: translateX(-50%);
+            border-radius: 3px;
+            opacity: 0;
+            animation: growLine 2s ease-out 1.2s forwards;
+            box-shadow: 0 0 20px rgba(124, 58, 237, 0.4);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin: 5rem 0;
+            opacity: 0;
+            animation-fill-mode: forwards;
+        }
+
+        .timeline-item:nth-child(odd) {
+            animation: slideInLeft 1s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+        }
+
+        .timeline-item:nth-child(even) {
+            animation: slideInRight 1s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+        }
+
+        /* Staggered Animation Delays */
+        .timeline-item:nth-child(1) { animation-delay: 1.8s; }
+        .timeline-item:nth-child(2) { animation-delay: 2.0s; }
+        .timeline-item:nth-child(3) { animation-delay: 2.2s; }
+        .timeline-item:nth-child(4) { animation-delay: 2.4s; }
+        .timeline-item:nth-child(5) { animation-delay: 2.6s; }
+        .timeline-item:nth-child(6) { animation-delay: 2.8s; }
+        .timeline-item:nth-child(7) { animation-delay: 3.0s; }
+        .timeline-item:nth-child(8) { animation-delay: 3.2s; }
+        .timeline-item:nth-child(9) { animation-delay: 3.4s; }
+        .timeline-item:nth-child(10) { animation-delay: 3.6s; }
+        .timeline-item:nth-child(11) { animation-delay: 3.8s; }
+        .timeline-item:nth-child(12) { animation-delay: 4.0s; }
+
+        .timeline-card {
+            background: white;
+            border-radius: 25px;
+            padding: 0;
+            margin: 0 4rem;
+            position: relative;
+            box-shadow: 0 15px 50px rgba(0,0,0,0.08);
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+            overflow: hidden;
+            border: 2px solid transparent;
+            background-clip: padding-box;
+        }
+
+        .timeline-item:nth-child(odd) .timeline-card {
+            margin-left: calc(50% + 4rem);
+        }
+
+        .timeline-item:nth-child(even) .timeline-card {
+            margin-right: calc(50% + 4rem);
+        }
+
+        .timeline-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            padding: 2px;
+            background: linear-gradient(135deg, #7c3aed, #a855f7, #ec4899);
+            border-radius: 25px;
+            mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            mask-composite: subtract;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .timeline-card:hover::before {
+            opacity: 1;
+        }
+
+        .timeline-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 25px 80px rgba(124, 58, 237, 0.25);
+        }
+
+        .card-image {
+            width: 100%;
+            height: 450px;
+            object-fit: cover;
+            border-radius: 25px 25px 0 0;
+            transition: transform 0.5s ease;
+        }
+
+        .timeline-card:hover .card-image {
+            transform: scale(1.05);
+        }
+
+        .card-content {
+            padding: 2.5rem;
+            text-align: center;
+            position: relative;
+        }
+
+        .timeline-marker {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #7c3aed, #a855f7);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            font-weight: 800;
+            box-shadow: 0 10px 30px rgba(124, 58, 237, 0.4);
+            z-index: 3;
+            border: 6px solid white;
+            transition: all 0.4s ease;
+        }
+
+        .timeline-marker:hover {
+            transform: translate(-50%, -50%) scale(1.1) rotate(360deg);
+            box-shadow: 0 15px 40px rgba(124, 58, 237, 0.6);
+        }
+
+        .phase-number {
+            background: linear-gradient(135deg, #7c3aed, #a855f7);
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            margin: 0 auto 2rem;
+            font-size: 1.5rem;
+            box-shadow: 0 8px 25px rgba(124, 58, 237, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .phase-number::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.3), transparent);
+            transform: rotate(45deg);
+            animation: shimmer 2s infinite;
+        }
+
+        .phase-title {
+            color: #1f2937;
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin: 0;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Floating Elements */
+        .floating-icon {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 2.5rem;
+            opacity: 0.1;
+            animation: float 4s ease-in-out infinite;
+            transition: all 0.4s ease;
+        }
+
+        .timeline-card:hover .floating-icon {
+            opacity: 0.3;
+            transform: scale(1.2) rotate(15deg);
+        }
+
+        /* Animations */
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes growLine {
+            from {
+                opacity: 0;
+                transform: translateX(-50%) scaleY(0);
+                transform-origin: top;
+            }
+            to {
+                opacity: 1;
+                transform: translateX(-50%) scaleY(1);
+            }
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-150px) rotate(-5deg);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0) rotate(0deg);
+            }
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(150px) rotate(5deg);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0) rotate(0deg);
+            }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            25% { transform: translateY(-10px) rotate(5deg); }
+            50% { transform: translateY(0) rotate(0deg); }
+            75% { transform: translateY(-5px) rotate(-3deg); }
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: translate(-50%, -50%) scale(1); }
+            50% { transform: translate(-50%, -50%) scale(1.05); }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1200px) {
+            .main-title h1 { font-size: 3.5rem; }
+            
+            .timeline-card { margin: 0 3rem; }
+            
+            .timeline-item:nth-child(odd) .timeline-card {
+                margin-left: calc(50% + 3.5rem);
+            }
+
+            .timeline-item:nth-child(even) .timeline-card {
+                margin-right: calc(50% + 3.5rem);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-container { padding: 0 1rem; }
+            .nav-title { font-size: 1.6rem; }
+            .back-btn { padding: 0.6rem 1.2rem; font-size: 0.9rem; }
+            
+            .main-title h1 { font-size: 2.5rem; }
+            .main-title p { font-size: 1.2rem; }
+            
+            .timeline::before { left: 40px; }
+            
+            .timeline-item:nth-child(odd) .timeline-card,
+            .timeline-item:nth-child(even) .timeline-card {
+                margin-left: 90px;
+                margin-right: 1rem;
+            }
+            
+            .timeline-marker {
+                left: 40px;
+                width: 60px;
+                height: 60px;
+                font-size: 1.2rem;
+            }
+            
+            .card-image { height: 220px; }
+            .card-content { padding: 2rem; }
+            .phase-title { font-size: 1.5rem; }
+        }
+
+        @media (max-width: 480px) {
+            .container { padding: 2rem 0.5rem; }
+            .main-title h1 { font-size: 2rem; }
+            
+            .timeline-card {
+                margin-left: 70px;
+                margin-right: 0.5rem;
+            }
+            
+            .timeline-marker {
+                width: 50px;
+                height: 50px;
+                font-size: 1rem;
+            }
+            
+            .card-content { padding: 1.5rem;}
+            .phase-number { width: 50px; height: 50px; font-size: 1.2rem; }
+            .phase-title { font-size: 1.3rem; }
+            .card-image { height: 300px; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Navigation -->
+    <header class="header">
+        <nav class="nav-container">
+            <a href="index.html" class="back-btn">← Volver al inicio</a>
+            <h1 class="nav-title">Aves de la Bahía de Puno</h1>
+            <div class="nav-placeholder"></div>
+        </nav>
+    </header>
+
+    <div class="container">
+        <div class="main-title">
+            <h1>🦅 Investigación de Aves</h1>
+            <p>Metodología científica de estudio ornitológico en 12 etapas</p>
+        </div>
+
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-marker">1</div>
+                <div class="timeline-card">
+                    <img src="fotos padres/001.jpeg" 
+                         alt="Planificación" class="card-image">
+                    <div class="card-content">
+                        <div class="floating-icon">📋</div>
+                        <div class="phase-number">01</div>
+                        <!-- <h3 class="phase-title">Planificación del Estudio</h3> -->
+                    </div>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-marker">2</div>
+                <div class="timeline-card">
+                    <img src="fotos padres/002.jpeg" 
+                         alt="Revisión bibliográfica" class="card-image">
+                    <div class="card-content">
+                        <div class="floating-icon">📚</div>
+                        <div class="phase-number">02</div>
+                        <!-- <h3 class="phase-title">Revisión Bibliográfica</h3> -->
+                    </div>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-marker">3</div>
+                <div class="timeline-card">
+                    <img src="fotos padres/003.jpeg" 
+                         alt="Selección de sitios" class="card-image">
+                    <div class="card-content">
+                        <div class="floating-icon">🗺️</div>
+                        <div class="phase-number">03</div>
+                        <!-- <h3 class="phase-title">Selección de Sitios</h3> -->
+                    </div>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-marker">4</div>
+                <div class="timeline-card">
+                    <img src="fotos padres/004.jpeg" 
+                         alt="Obtención de permisos" class="card-image">
+                    <div class="card-content">
+                        <div class="floating-icon">📄</div>
+                        <div class="phase-number">04</div>
+                        <!-- <h3 class="phase-title">Obtención de Permisos</h3> -->
+                    </div>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-marker">5</div>
+                <div class="timeline-card">
+                    <img src="fotos padres/005.jpeg" 
+                         alt="Trabajo de campo" class="card-image">
+                    <div class="card-content">
+                        <div class="floating-icon">🔍</div>
+                        <div class="phase-number">05</div>
+                        <!-- <h3 class="phase-title">Trabajo de Campo</h3> -->
+                    </div>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-marker">6</div>
+                <div class="timeline-card">
+                    <img src="fotos padres/006.jpeg" 
+                         alt="Captura y anillado" class="card-image">
+                    <div class="card-content">
+                        <div class="floating-icon">⭕</div>
+                        <div class="phase-number">06</div>
+                        <!-- <h3 class="phase-title">Captura y Anillado</h3> -->
+                    </div>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-marker">7</div>
+                <div class="timeline-card">
+                    <img src="fotos padres/007.jpeg" 
+                         alt="Documentación fotográfica" class="card-image">
+                    <div class="card-content">
+                        <div class="floating-icon">📸</div>
+                        <div class="phase-number">07</div>
+                        <!-- <h3 class="phase-title">Documentación Fotográfica</h3> -->
+                    </div>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-marker">8</div>
+                <div class="timeline-card">
+                    <img src="fotos padres/008.jpeg" 
+                         alt="Análisis de laboratorio" class="card-image">
+                    <div class="card-content">
+                        <div class="floating-icon">🧬</div>
+                        <div class="phase-number">08</div>
+                        <!-- <h3 class="phase-title">Análisis de Laboratorio</h3> -->
+                    </div>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-marker">9</div>
+                <div class="timeline-card">
+                    <img src="fotos padres/009.jpeg" 
+                         alt="Análisis de datos" class="card-image">
+                    <div class="card-content">
+                        <div class="floating-icon">📊</div>
+                        <div class="phase-number">09</div>
+                        <!-- <h3 class="phase-title">Análisis de Datos</h3> -->
+                    </div>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-marker">10</div>
+                <div class="timeline-card">
+                    <img src="fotos padres/0010.jpeg" 
+                         alt="Interpretación" class="card-image">
+                    <div class="card-content">
+                        <div class="floating-icon">💡</div>
+                        <div class="phase-number">10</div>
+                        <!-- <h3 class="phase-title">Interpretación de Resultados</h3> -->
+                    </div>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-marker">11</div>
+                <div class="timeline-card">
+                    <img src="fotos padres/0011.jpeg" 
+                         alt="Redacción" class="card-image">
+                    <div class="card-content">
+                        <div class="floating-icon">✍️</div>
+                        <div class="phase-number">11</div>
+                        <!-- <h3 class="phase-title">Redacción de Informe</h3> -->
+                    </div>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-marker">12</div>
+                <div class="timeline-card">
+                    <img src="fotos padres/0012.jpeg" 
+                         alt="Publicación" class="card-image">
+                    <div class="card-content">
+                        <div class="floating-icon">📢</div>
+                        <div class="phase-number">12</div>
+                        <!-- <h3 class="phase-title">Publicación y Difusión</h3> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Enhanced Intersection Observer
+            const observerOptions = {
+                threshold: 0.2,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.animationPlayState = 'running';
+                    }
+                });
+            }, observerOptions);
+
+            // Observe timeline items
+            const timelineItems = document.querySelectorAll('.timeline-item');
+            timelineItems.forEach(item => {
+                observer.observe(item);
+            });
+
+            // Enhanced hover effects
+            const timelineCards = document.querySelectorAll('.timeline-card');
+            
+            timelineCards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-15px) scale(1.03)';
+                    
+                    // Add glow effect
+                    this.style.boxShadow = '0 30px 100px rgba(124, 58, 237, 0.3)';
+                });
+
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0) scale(1)';
+                    this.style.boxShadow = '0 15px 50px rgba(0,0,0,0.08)';
+                });
+
+                // Advanced click ripple effect
+                card.addEventListener('click', function(e) {
+                    const rect = this.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    
+                    const ripple = document.createElement('div');
+                    ripple.style.cssText = `
+                        position: absolute;
+                        left: ${x}px;
+                        top: ${y}px;
+                        width: 0;
+                        height: 0;
+                        border-radius: 50%;
+                        background: radial-gradient(circle, rgba(124, 58, 237, 0.4), transparent 70%);
+                        transform: translate(-50%, -50%);
+                        animation: megaRipple 0.8s ease-out;
+                        pointer-events: none;
+                        z-index: 2;
+                    `;
+                    
+                    this.style.position = 'relative';
+                    this.appendChild(ripple);
+                    
+                    setTimeout(() => ripple.remove(), 800);
+                });
+            });
+
+            // Timeline markers pulse animation
+            const markers = document.querySelectorAll('.timeline-marker');
+            markers.forEach((marker, index) => {
+                setTimeout(() => {
+                    marker.style.animation = 'pulse 3s ease-in-out infinite';
+                }, (index + 1) * 2000);
+            });
+
+            // Smooth parallax scrolling
+            let ticking = false;
+            
+            function updateParallax() {
+                const scrolled = window.pageYOffset;
+                const timeline = document.querySelector('.timeline');
+                const cards = document.querySelectorAll('.timeline-card');
+                
+                // Timeline background movement
+                if (timeline) {
+                    timeline.style.transform = `translateY(${scrolled * 0.02}px)`;
+                }
+                
+                // Individual card parallax
+                cards.forEach((card, index) => {
+                    const rate = (index % 2 === 0) ? 0.03 : -0.03;
+                    card.style.transform = `translateY(${scrolled * rate}px)`;
+                });
+                
+                ticking = false;
+            }
+            
+            window.addEventListener('scroll', () => {
+                if (!ticking) {
+                    requestAnimationFrame(updateParallax);
+                    ticking = true;
+                }
+            });
+
+            // Image loading animation
+            const images = document.querySelectorAll('.card-image');
+            images.forEach(img => {
+                img.addEventListener('load', function() {
+                    this.style.opacity = '0';
+                    this.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                    
+                    setTimeout(() => {
+                        this.style.opacity = '1';
+                        this.style.transform = 'scale(1)';
+                    }, 100);
+                });
+            });
+
+            // Number animation on scroll
+            const numbers = document.querySelectorAll('.phase-number');
+            const numberObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const number = entry.target;
+                        number.style.animation = 'shimmer 2s ease-out';
+                    }
+                });
+            });
+
+            numbers.forEach(number => {
+                numberObserver.observe(number);
+            });
+
+            // Add floating animation to icons
+            const floatingIcons = document.querySelectorAll('.floating-icon');
+            floatingIcons.forEach((icon, index) => {
+                icon.style.animationDelay = `${index * 0.3}s`;
+            });
+        });
+
+        // Enhanced CSS animations
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes megaRipple {
+                to {
+                    width: 500px;
+                    height: 500px;
+                    opacity: 0;
+                }
+            }
+            
+            @keyframes textGlow {
+                0%, 100% { text-shadow: 0 0 5px rgba(124, 58, 237, 0.5); }
+                50% { text-shadow: 0 0 20px rgba(124, 58, 237, 0.8), 0 0 30px rgba(168, 85, 247, 0.6); }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>

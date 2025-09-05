@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz de Aves Andinas</title>
+    <link rel="icon" type="image/x-icon" href="imagenes/icono.jpg">
+    <link rel="stylesheet" href="quiz.css">
+    <link rel="stylesheet" href="style4.css">
+</head>
+<body>
+  <header class="detail-header">
+    <div class="header-content">
+      <a href="index.html" class="back-button">
+        <i class="fas fa-arrow-left"></i>
+        Volver al inicio
+      </a>
+      <div class="header-logo">
+        <i class="fas fa-feather-alt"></i>
+        Aves de la Bahia de Puno
+      </div>
+    </div>
+  </header>
+    <div class="container">
+        <header>
+            <h1>🦅 Quiz de Aves de la Bahia de Puno</h1>
+            <p>Pon a prueba tus conocimientos sobre las fascinantes aves de los Andes</p>
+        </header>
+
+        <div class="quiz-container" id="quizContainer">
+            <div class="question-counter">
+                <span id="questionNumber">1</span> de 1<span id="totalQuestions"></span>
+            </div>
+
+            <div class="question-card">
+                <h2 id="questionText">Cargando pregunta...</h2>
+                <div class="options" id="optionsContainer">
+                    <!-- Las opciones se generarán dinámicamente -->
+                </div>
+            </div>
+
+            <div class="quiz-controls">
+                <button id="nextBtn" class="btn btn-primary" disabled>Siguiente</button>
+            </div>
+        </div>
+
+        <div class="results-container" id="resultsContainer" style="display: none;">
+            <h2>🎉 ¡Quiz Completado!</h2>
+            <div class="score-display">
+                <div class="score-circle">
+                    <span id="finalScore">0</span>/ 1<span id="totalScore"></span>
+                </div>
+                <p id="scoreMessage">¡Excelente conocimiento de aves andinas!</p>
+            </div>
+            
+            <div class="results-details" id="resultsDetails">
+                <!-- Los detalles se generarán dinámicamente -->
+            </div>
+
+            <button id="restartBtn" class="btn btn-secondary">Reiniciar Quiz</button>
+        </div>
+
+        <div class="progress-bar">
+            <div class="progress-fill" id="progressFill"></div>
+        </div>
+    </div>
+
+    <script src="quiz.js"></script>
+</body>
+</html>
